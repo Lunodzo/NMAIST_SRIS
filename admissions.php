@@ -32,6 +32,7 @@
 
         <!-- Sidebar -->
         <?php require 'navigation.php';?>
+        <?php require 'connection.php';?>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -55,41 +56,57 @@
                     <?php require 'header_summary.php'; ?>
 
                     <!-- DataTales Example -->
+                    
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">All Students</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
+                                            <th>Names</th>
+                                            <th>Programme</th>
+                                            <th>Cohort</th>
+                                            <th>Sex</th>
+                                            <th>Phone</th>
+                                            <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
+                                            <th>Names</th>
+                                            <th>Programme</th>
+                                            <th>Cohort</th>
+                                            <th>Sex</th>
+                                            <th>Phone</th>
+                                            <th>Actions</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
                                         <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>61</td>
-                                            <td>2011/04/25</td>
-                                            <td>$320,800</td>
+                                        <?php
+                                        $sql = "SELECT * FROM student, course 
+                                        where student.course_id = course.course_id";
+                                        if($student_results = mysqli_query($conn, $sql)){
+                                            while ($row = mysqli_fetch_assoc($student_results)) {
+                                                
+                                                echo "<td>".$row['f_name']."&nbsp".$row['l_name']." </td>";
+                                                echo "<td>".$row['course_short_form']." </td>";
+                                                echo "<td>".$row['cohort']." </td>";
+                                                echo "<td>".$row['sex']." </td>";
+                                                echo "<td>".$row['phone']." </td>";
+                                                echo "<td><a href='#' class='d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm'><i
+                                                class='fas fa-list fa-sm text-white-50'></i> View</a>
+                                                
+                                                <a href='#' class='d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm'><i
+                                                class='fas fa-edit fa-sm text-white-50'></i> Edit</a></td>";
+                                                
+                                        }
+                                    }
+
+                                        ?>
                                         </tr>
                                         
                                     </tbody>
