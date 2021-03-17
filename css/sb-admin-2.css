@@ -10824,7 +10824,7 @@ a:focus {
 }
 
 .bg-login-image {
-  background: url("/img/nm-aist.jpsg");
+  background: url("img/nm-aist.jpg");
   background-position: center;
   background-size: cover;
 }
