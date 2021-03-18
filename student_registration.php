@@ -150,7 +150,7 @@
                             </div>
                         
                         </div>
-                            </form>
+                    </form>
                             <hr>
                             <h3>OR</h3>
                             <p>Upload Bulk Students</p>

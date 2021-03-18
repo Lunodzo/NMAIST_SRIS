@@ -65,6 +65,146 @@
                             <div class="tab-content" id="cardTabContent">
                                 <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
                                     <h5 class="card-title">My Profile</h5>
+                                    <div class="row">
+
+                                        <!-- SECOND CARD -->
+                                        <div class="col-xl-3 col-lg-5">
+                                            <div class="card shadow mb-4">
+                                                <!-- Card Header - Dropdown -->
+                                                <div
+                                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                                    <h6 class="m-0 font-weight-bold text-primary">Profile Picture</h6>
+                                                </div>
+
+                                                <!-- Card Body -->
+                                                <div class="card-body">
+                                                
+                                                   
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- FIRST CARD -->
+                                        <div class="col-xl-9 col-lg-7">
+                                            <div class="card shadow mb-4">
+                                                <!-- Card Header - Dropdown -->
+                                                <div
+                                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                                    <h6 class="m-0 font-weight-bold text-primary">Account Details</h6>
+                                                    <div class="dropdown no-arrow">
+                                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                            
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <!-- Card Body -->
+                                                <div class="card-body">
+                                                    <form class="user" method="post" action="register_student.php">
+                                                            <div class="form-group row">
+                                                                <div class="col-sm-4 mb-3 mb-sm-0">
+                                                                    <input type="text" class="form-control" id="FirstName"
+                                                                        placeholder="Mike" readonly>
+                                                                </div>
+                                                                <div class="col-sm-4 mb-3 mb-sm-0">
+                                                                    <input type="text" class="form-control" id="MiddleName"
+                                                                        placeholder="Zakayo" readonly>
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                    <input type="text" class="form-control" id="LastName"
+                                                                        placeholder="Majham" readonly>
+                                                                </div>
+                                                            </div>
+
+
+                                                            <div class="form-group row">
+                                                                <div class="col-sm-4 mb-3 mb-sm-0">
+                                                                    <input type="sex" class="form-control form-control-user"
+                                                                        id="sex" placeholder="Male" readonly>
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                    <input type="marital" class="form-control form-control-user"
+                                                                        id="marital" placeholder="Single" readonly>
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                    <input type="date" class="form-control"
+                                                                        id="date" placeholder="Date of Birth" readonly>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group row">
+                                                                <div class="col-sm-4">
+                                                                    <input type="text" class="form-control" id="RedNumber"
+                                                                        placeholder="M087/T19" readonly>
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                    <input type="text" class="form-control" id="phone"
+                                                                        placeholder="+255765364857" required>
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                    <input type="email" class="form-control" id="InputEmail"
+                                                                    placeholder="majhamm@nm-aist.ac.tz" readonly>
+                                                                </div>
+                                                                
+                                                            </div>
+
+                                                            <div class="form-group row">
+                                                                <div class="col-sm-4 mb-3 mb-sm-0">
+                                                                    <input type="address" class="form-control"
+                                                                        id="address" placeholder="Mererani, Arusha" required="true">
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                    <input type="country" class="form-control"
+                                                                        id="nation" placeholder="Tanzanian" readonly>
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                    <select class = "selectpicker form-control" id = "course" name="corse">
+                                                                        <!-- FETCH LIST FROM THE DB -->
+                                                                        <option>Single</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+
+
+                                                            <div class="form-group row">
+                                                                <div class="col-sm-4 mb-3 mb-sm-0">
+                                                                    <input type="number" class="form-control"
+                                                                        id="cohort" placeholder="Cohort" required="true">
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                    <select class = "selectpicker form-control" id = "sponsor" name="sponsor">
+                                                                        <!-- FETCH LIST FROM THE DB -->
+                                                                        <option>Single</option>
+                                                                        <option>Married</option>
+                                                                        <option>Devorced</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                    <select class = "selectpicker form-control" id = "study_type" name="study_type">
+                                                                        <!-- FETCH LIST FROM THE DB -->
+                                                                        <option>Project</option>
+                                                                        <option>Dissertation</option>
+                                                                        <option>Thesis</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row">
+                                                                <div class="col-sm-3">
+                                                                    <a type="submit" href="login.html" class="btn btn-primary btn-block">
+                                                                    Save Changes
+                                                                    </a> 
+                                                                </div>
+                                                            
+                                                            </div>
+                                                        </form>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        
+
+                                    </div>
                                     <p class="card-text">...</p>
                                 </div>
                                 <div class="tab-pane fade" id="example" role="tabpanel" aria-labelledby="example-tab">
