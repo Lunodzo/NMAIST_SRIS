@@ -18,7 +18,7 @@
             <li class="nav-item active">
                 <a class="nav-link" href="admi_dashboard.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
+                    <span>Student Dashboard</span></a>
             </li>
 
             <!-- Divider -->

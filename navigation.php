@@ -45,8 +45,8 @@
 
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">Students' Catalogue:</h6>
-                        <a class="collapse-item" href="404.html">Students Details</a>
-                        <a class="collapse-item" href="blank.html">Upload Bulk Students</a>
+                        <a class="collapse-item" href="student_list.php">Students Listing</a>
+                        <a class="collapse-item" href="upload_bulk_student.php">Upload Bulk Students</a>
                     </div>
                 </div>
             </li>
@@ -82,6 +82,12 @@
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">Special Needs</h6>
                         <a class="collapse-item" href="404.html">Check List</a>
+                        <a class="collapse-item" href="404.html">International Students</a>
+
+                        <div class="collapse-divider"></div>
+                        <h6 class="collapse-header">Counselling</h6>
+                        <a class="collapse-item" href="404.html">Requests</a>
+                        <a class="collapse-item" href="404.html">Serviced</a>
                     </div>
                 </div>
             </li>
