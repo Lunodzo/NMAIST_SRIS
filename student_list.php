@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SRIS - Admissions</title>
+    <title>SRIS - Student Details</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -31,8 +31,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <?php require 'navigation.php';?>
-        <?php require 'connection.php';?>
+        <?php include 'navigation.php'; ?>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -42,18 +41,15 @@
             <div id="content">
 
                 <!-- Topbar -->
-                <?php require 'top_bar.php' ?>
+                <?php include 'top_bar.php'; ?>
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Admissions</h1>
-                    <p class="mb-4">You have landed into Admissions Dashboard, If you think this is a mistake <a target="_blank"
-                            href="#">Try menu below</a>.</p>
+                    <h1 class="h3 mb-4 text-gray-800">Student Details</h1>
 
-                    <?php require 'header_summary.php'; ?>
 
                     <!-- Student List Table -->
                     
@@ -122,7 +118,7 @@
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            <?php require 'footer.php'; ?>
+            <?php include 'footer.php'; ?>
             <!-- End of Footer -->
 
         </div>

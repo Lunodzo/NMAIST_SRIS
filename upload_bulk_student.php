@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SRIS - Blank</title>
+    <title>SRIS - Upload Bulk Students</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -29,7 +29,6 @@
 
         <!-- Sidebar -->
         <?php include 'navigation.php'; ?>
-        <?php require 'connection.php';?>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -46,9 +45,27 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">Accounts Department</h1>
+                    <h1 class="h3 mb-4 text-gray-800">Upload Bulk Students</h1>
+                    <p class="mb-4">To upload multiple students at once, the system allows you to upload .xls or .csv file with the following columns <a target="_blank"
+                            href="#">Download template</a>.</p>
 
-                    <?php require 'header_summary_accounts.php'; ?>
+                    <hr>
+                    <form method="post" action="import_bulk.php" enctype="multipart/form-data">
+                        <div class="col-sm-6">
+                            <div class="input-group-append">
+                                <input id="upload" type="file" accept="" class="form-control border-0" required>
+                                
+                                
+                            </div>
+                            <br>
+
+                            <div class="input-group-append">
+                                
+                                <input class="btn btn-primary btn-user btn-block" type="submit" name="submit_file" value="Submit"/>
+                                
+                            </div>
+                    </div>
+                    </form>
 
                 </div>
                 <!-- /.container-fluid -->
