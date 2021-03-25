@@ -109,7 +109,7 @@
                                                 </div>
                                                 <!-- Card Body -->
                                                 <div class="card-body">
-                                                    <form class="user" method="post" action="register_student.php">
+                                                    <form class="user" method="post" action="student_registration_upload.php">
                                                             <div class="form-group row">
                                                                 <div class="col-sm-4 mb-3 mb-sm-0">
                                                                     <label for="f_name">First Name</label>
