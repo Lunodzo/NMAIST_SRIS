@@ -28,7 +28,10 @@ include 'connection.php';
 </head>
 
 <body class="bg-gradient-primary">
+<!-- FIXME: Rosemary: Fix this form and rename it -->
     <!-- TODO: Rosemary: Design and implement student registration form -->
+    <p>Student registration form</p>
+    <!-- FIXME: Rosemary: Fix this form because there is another form of student registration -->
     <p>Student registration form</p>
 </body>
 
