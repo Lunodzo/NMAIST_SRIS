@@ -80,7 +80,7 @@
                                                 <div class="card-body">
                                                     <div class="row">
                                                         <img class="img-profile rounded-circle"
-                                                            src="img/undraw_profile_3.svg">
+                                                            src="img/undraw_profile_3.svg" alt="abc">
                                                     </div>
                                                     <hr>
                                                     <div class="row">

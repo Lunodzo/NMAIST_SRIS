@@ -45,9 +45,9 @@
                                     </div>
                                     <form class="user">
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user"
-                                                id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Enter Email Address...">
+                                            <label for="exampleInputEmail">Enter email address</label><input type="email" class="form-control form-control-user"
+                                                                                          id="exampleInputEmail" aria-describedby="emailHelp"
+                                                                                          placeholder="mwinukal@nm-aist.ac.tz">
                                         </div>
                                         <a href="password-reset.php" class="btn btn-primary btn-user btn-block">
                                             Reset Password

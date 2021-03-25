@@ -70,14 +70,14 @@
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Accomodations:</h6>
-                        <a class="collapse-item" href="login.html">Allocate Rooms</a>
-                        <a class="collapse-item" href="register.html">Check Hostel status</a>
-                        <a class="collapse-item" href="forgot-password.html">Another</a>
+                        <h6 class="collapse-header">Accommodations:</h6>
+                        <a class="collapse-item" href="#">Allocate Rooms</a>
+                        <a class="collapse-item" href="#">Check Hostel status</a>
+                        <a class="collapse-item" href="#">Another</a>
                         <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">Health Ensurance</h6>
-                        <a class="collapse-item" href="404.html">Registered</a>
-                        <a class="collapse-item" href="blank.html">Pending</a>
+                        <h6 class="collapse-header">Health Insurance</h6>
+                        <a class="collapse-item" href="#">Registered</a>
+                        <a class="collapse-item" href="#">Pending</a>
 
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">Special Needs</h6>
@@ -102,8 +102,8 @@
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="login.html">Bills</a>
-                        <a class="collapse-item" href="register.html">Payments</a>
+                        <a class="collapse-item" href="#">Bills</a>
+                        <a class="collapse-item" href="#">Payments</a>
                     </div>
                 </div>
             </li>
@@ -112,7 +112,7 @@
             <!-- IT DEPARTMENT -->
 
             <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="#">
                     <i class="fas fa-fw fa-laptop-medical"></i>
                     <span>IT Department</span></a>
             </li>

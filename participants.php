@@ -1,4 +1,4 @@
-<html>
+<html lang="en">
 	<head>
 		<title>SRIS Participants</title>
 		<meta http-equiv="refresh" content="5;URL='<?php echo $_SERVER['HTTP_REFERER']; ?>'" />
