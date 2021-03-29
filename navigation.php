@@ -81,13 +81,13 @@
 
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">Special Needs</h6>
-                        <a class="collapse-item" href="404.html">Check List</a>
-                        <a class="collapse-item" href="404.html">International Students</a>
+                        <a class="collapse-item" href="404.php">Check List</a>
+                        <a class="collapse-item" href="404.php">International Students</a>
 
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">Counselling</h6>
-                        <a class="collapse-item" href="404.html">Requests</a>
-                        <a class="collapse-item" href="404.html">Serviced</a>
+                        <a class="collapse-item" href="404.php">Requests</a>
+                        <a class="collapse-item" href="404.php">Serviced</a>
                     </div>
                 </div>
             </li>

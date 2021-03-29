@@ -41,16 +41,35 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Welcome to the NM-AIST Student Registration Information System!</h1>
                                     </div>
-                                    <form class="user">
+                                    <?php
+
+                                    $errors = array(
+                                        1=>"Invalid user name or password, Try again",
+                                        2=>"Please login to access this area"
+                                    );
+
+                                    $error_id = isset($_GET['err']) ? (int)$_GET['err'] : 0;
+
+                                    if ($error_id == 1) {
+                                        echo '<p class="text-danger">'.$errors[$error_id].'</p>';
+                                    }elseif ($error_id == 2) {
+                                        echo '<p class="text-danger">'.$errors[$error_id].'</p>';
+                                    }
+                                    ?>
+                                    <form class="user" method="post" action="login-action.php">
                                         <div class="form-group">
-                                            <label for="exampleInputEmail">Email Address</label><input type="email" class="form-control form-control-user"
-                                                                                          id="exampleInputEmail" aria-describedby="emailHelp"
-                                                                                          placeholder="Enter Email Address...">
+
+                                            <label for="email">Email Address</label>
+                                            <input type="email" name = "email" class="form-control form-control-user"
+                                                   id="email" aria-describedby="emailHelp" placeholder="Enter Email Address...">
                                         </div>
+
                                         <div class="form-group">
-                                            <label for="exampleInputPassword">Enter Password</label><input type="password" class="form-control form-control-user"
-                                                                                             id="exampleInputPassword" placeholder="Password">
+                                            <label for="password">Enter Password</label>
+                                            <input type="password" name = "password" class="form-control form-control-user"
+                                                   id="password" placeholder="Password">
                                         </div>
+
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
                                                 <input type="checkbox" class="custom-control-input" id="customCheck">
@@ -58,23 +77,12 @@
                                                     Me</label>
                                             </div>
                                         </div>
-                                        <a href="admi_dashboard.php" class="btn btn-primary btn-user btn-block">
-                                            Login
-                                        </a>
+                                        <button type="submit" name="submit" class="btn btn-primary btn-user btn-block">Login</button>
                                         <hr>
-                                       <!--  <a href="index.html" class="btn btn-google btn-user btn-block">
-                                            <i class="fab fa-google fa-fw"></i> Login with Google
-                                        </a>
-                                        <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                                            <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
-                                        </a> -->
                                     </form>
                                     <div class="text-center">
                                         <a class="small" href="forgot-password.php">Forgot Password?</a>
                                     </div>
-                                   <!--  <div class="text-center">
-                                        <a class="small" href="register.html">Create an Account!</a>
-                                    </div> -->
                                 </div>
                             </div>
                         </div>

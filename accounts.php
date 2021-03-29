@@ -1,3 +1,11 @@
+<?php
+session_start();
+$role = $_SESSION['sess_userrole'];
+if(!isset($_SESSION['sess_email']) || $role!="accountant"){
+    header('Location: index.php?err=2');
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,7 +36,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <?php include 'navigation.php'; ?>
+        <?php include 'navigation-accounts.php'; ?>
         <?php require 'connection.php';?>
         <!-- End of Sidebar -->
 

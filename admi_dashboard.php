@@ -1,3 +1,11 @@
+<?php
+session_start();
+$role = $_SESSION['sess_userrole'];
+if(!isset($_SESSION['sess_email']) || $role!="admin"){
+    header('Location: index.php?err=2');
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
