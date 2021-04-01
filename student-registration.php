@@ -1,3 +1,13 @@
+<?php
+session_start();
+$role = $_SESSION['sess_userrole'];
+if(!isset($_SESSION['sess_email']) || $role != "admin"){
+    if(!isset($_SESSION['sess_email']) || $role != "admission"){
+        header('Location: index.php?err=2');
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,7 +48,7 @@
             <div id="content">
 
                 <!-- Topbar -->
-                <?php include 'top_bar.php'; ?>
+                <?php include 'top-bar.php'; ?>
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
@@ -46,7 +56,7 @@
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-4 text-gray-800">Student Registration</h1>
-                    <form class="user" method="post" action="student_registration_upload.php">
+                    <form class="user" method="post" action="student-registration-upload.php">
                         <div class="form-group row">
                             <div class="col-sm-4 mb-3 mb-sm-0">
                                 <label for="f_name">First Name</label>
@@ -359,7 +369,7 @@
                             <hr>
                             <h3>OR</h3>
                             <p>Upload Bulk Students</p>
-                            <form method="post" action="import_bulk.php" enctype="multipart/form-data">
+                            <form method="post" action="import-bulk.php" enctype="multipart/form-data">
                                 <div class="col-sm-6">
                                 <div class="input-group-append">
                                     <input id="upload" type="file" class="form-control border-0" required>

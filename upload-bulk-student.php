@@ -1,3 +1,13 @@
+<?php
+session_start();
+$role = $_SESSION['sess_userrole'];
+if(!isset($_SESSION['sess_email']) || $role != "admin"){
+    if(!isset($_SESSION['sess_email']) || $role != "admission"){
+        header('Location: index.php?err=2');
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,7 +48,7 @@
             <div id="content">
 
                 <!-- Topbar -->
-                <?php include 'top_bar.php'; ?>
+                <?php include 'top-bar.php'; ?>
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
@@ -50,7 +60,7 @@
                             href="#">Download template</a>.</p>
 
                     <hr>
-                    <form method="post" action="import_bulk.php" enctype="multipart/form-data">
+                    <form method="post" action="import-bulk.php" enctype="multipart/form-data">
                         <div class="col-sm-6">
                             <div class="input-group-append">
                                 <input id="upload" type="file" accept="" class="form-control border-0" required>

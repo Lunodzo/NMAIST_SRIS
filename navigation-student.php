@@ -40,7 +40,7 @@
                         <h6 class="collapse-header">Registration:</h6>
                         <a class="collapse-item" href="admissions.php">Start Registration</a>
                         <a class="collapse-item" href="admissions.php">Upload Documents</a>
-                        <a class="collapse-item" href="verify_docs.php">Verify Documents</a>
+                        <a class="collapse-item" href="verify-docs.php">Verify Documents</a>
 
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">Students' Ground:</h6>

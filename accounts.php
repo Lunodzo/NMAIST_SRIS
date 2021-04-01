@@ -1,11 +1,12 @@
 <?php
 session_start();
 $role = $_SESSION['sess_userrole'];
-if(!isset($_SESSION['sess_email']) || $role!="accountant"){
-    header('Location: index.php?err=2');
+if(!isset($_SESSION['sess_email']) || $role != "admin"){
+    if(!isset($_SESSION['sess_email']) || $role != "accountant"){
+        header('Location: index.php?err=2');
+    }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,6 +29,9 @@ if(!isset($_SESSION['sess_email']) || $role!="accountant"){
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
+    <!-- Custom styles for this page -->
+    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
 </head>
 
 <body id="page-top">
@@ -36,8 +40,14 @@ if(!isset($_SESSION['sess_email']) || $role!="accountant"){
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <?php include 'navigation-accounts.php'; ?>
-        <?php require 'connection.php';?>
+        <?php
+            if(isset($_SESSION['sess_email']) && $role == "admin"){
+                include 'navigation.php';
+            }else if(isset($_SESSION['sess_email']) && $role == "accountant"){
+                include 'navigation-accounts.php';
+            }
+            require 'connection.php';
+        ?>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -47,7 +57,7 @@ if(!isset($_SESSION['sess_email']) || $role!="accountant"){
             <div id="content">
 
                 <!-- Topbar -->
-                <?php include 'top_bar.php'; ?>
+                <?php include 'top-bar.php'; ?>
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
@@ -56,7 +66,183 @@ if(!isset($_SESSION['sess_email']) || $role!="accountant"){
                     <!-- Page Heading -->
                     <h1 class="h3 mb-4 text-gray-800">Accounts Department</h1>
 
-                    <?php require 'header_summary_accounts.php'; ?>
+                    <?php require 'header-summary-accounts.php'; ?>
+
+                    <h1 class="h4 mb-4 text-gray-800">Pending Bills</h1>
+
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Pending Bills</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                    <tr>
+                                        <th>Names</th>
+                                        <th>Bill Name</th>
+                                        <th>Control Number</th>
+                                        <th>Date Created</th>
+                                        <th>Amount</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    </thead>
+
+                                    <tbody>
+                                    <?php
+                                    $sql = "SELECT * FROM `student_bill_view`";
+                                    if ($sql_results = mysqli_query($conn, $sql)){
+                                        while($row = mysqli_fetch_assoc($sql_results)){
+                                            echo "<tr>";
+                                            echo "<td>".$row['f_name']."&nbsp".$row['l_name']."</td>";
+                                            echo "<td>".$row['bill_name']." </td>";
+                                            echo "<td>".$row['control_no']." </td>";
+                                            echo "<td>".$row['date_created']." </td>";
+                                            echo "<td>".$row['amount']." </td>";
+                                            echo "<td><span class='badge badge-warning'>".$row['status']."</span></td>";
+                                            echo "<td><button class='btn btn-success btn-sm btn-block'> Clear </button></td>";
+                                            echo "</tr>";
+                                        }
+                                    }
+                                    ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card card-header-actions">
+                        <div class="card-header container-fluid">
+<!--                            <div class="row">-->
+<!--                                <div class="col-md-10">-->
+<!--                                    General Instructions-->
+<!--                                </div>-->
+<!--                                <div class="col-md-10 float-right">-->
+<!--                                    <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#billForm">Create Bill</button>-->
+<!--                                </div>-->
+<!--                            </div>-->
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <h3>General Instructions</h3>
+                                </div>
+                                <div class="col-md-2 float-right">
+                                    <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#billForm">Create Bill</button>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <ul class="nav nav-pills flex-column" id="cardPillVertical" role="tablist">
+                                        <li class="nav-item"><a class="nav-link active" id="overview-pill-vertical" href="#overviewPillVertical" data-toggle="tab" role="tab" aria-controls="overview" aria-selected="true">How to create Bills</a></li>
+                                        <li class="nav-item"><a class="nav-link" id="example-pill-vertical" href="#examplePillVertical" data-toggle="tab" role="tab" aria-controls="example" aria-selected="false">How to create Control Number</a></li>
+                                        <li class="nav-item"><a class="nav-link" id="payments" href="#examplePillVertical1" data-toggle="tab" role="tab" aria-controls="example" aria-selected="false">How to do payments</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="tab-content" id="cardPillContentVertical">
+                                        <div class="tab-pane fade show active" id="overviewPillVertical" role="tabpanel" aria-labelledby="overview-pill-vertical">
+                                            <h5 class="card-title">Follow these basic steps</h5>
+                                            <ol>
+                                                <li>To create bill, click bills link then My bills.</li>
+                                                <li>Click create bill button</li>
+                                                <li>Select currency</li>
+                                                <li>Select bill items (services) you want to pay for. If you want to create bill with many items click "Add Bill Item" button to select bill another item.</li>
+                                                <li>Click submit button to create bill.</li>
+                                            </ol>
+                                            <p class="card-text alert-warning">NB: If you want to do payments without specifying
+                                                bill items, just select the Lumpsum option from the bill item selection and enter
+                                                the total amount you want pay.</p>
+                                        </div>
+
+                                        <div class="tab-pane fade" id="examplePillVertical" role="tabpanel" aria-labelledby="example-pill-vertical">
+                                            <h5 class="card-title">Follow these basic steps</h5>
+                                            <ol>
+                                                <li>Control number can be obtained only after creating bill.</li>
+                                                <li>From the Pending bills page, Click "Get control number button on the right(The blue button)"</li>
+                                            </ol>
+                                        </div>
+                                        <p class="card-text alert-warning">
+                                            For the purpose of this project, we automatically generate CN which is independent to any other system.
+                                        </p>
+
+                                        <div class="tab-pane fade" id="examplePillVertical1" role="tabpanel" aria-labelledby="example-pill-vertical">
+                                            <h5 class="card-title">Follow these basic steps to pay</h5>
+                                            <p>After obtaining control number, Record it and go to any of the following banks for payments (CRDB, TPB and NMB)
+                                                Upon your arrival at any of the banks listed, provide the control number to the teller to process the payment.</p>
+                                            <hr>
+                                            <p>Payments can also be done through Mobile Money (Tigo-Pesa, M-pesa, and Airtel Money) through the following steps:</p>
+                                            <ol>
+                                                <li>Dial *150* 01#, or *150*00#, or *150*60# respectively</li>
+                                                <li>Select Pay Bills</li>
+                                                <li>Government Payment</li>
+                                                <li>Enter Reference Number (Contorl Number)</li>
+                                                <li>Enter the due amount</li>
+                                                <li>Confirm [by entering your password/pass code]</li>
+                                            </ol>
+
+                                            <p class="card-text alert-warning">
+                                                For purposed of this project, Go to the pending bills list and click Pay.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+<!--                        BILL FORM MODEL-->
+                        <div id="billForm" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <div class="card-header">
+                                            <div class="row block">
+                                                <h5 class="modal-title">Bill</h5>
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="card-body">
+                                        <form>
+                                            <div class="form-group">
+                                                <label for="student">Choose Student</label>
+                                                <select class="form-control" id="student">
+                                                    <option>Student 1</option>
+                                                    <option>Student 2</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="bill">Choose Bill</label>
+                                                <select class="form-control" id="bill">
+                                                    <option>Accommodation</option>
+                                                    <option>Fee</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="amount">Amount</label>
+                                                <input class="form-control" id="amount" type="number" placeholder="Enter Amount">
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
                 <!-- /.container-fluid -->
@@ -91,6 +277,13 @@ if(!isset($_SESSION['sess_email']) || $role!="accountant"){
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="js/demo/datatables-demo.js"></script>
 
 </body>
 

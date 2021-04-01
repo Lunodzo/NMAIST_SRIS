@@ -46,7 +46,7 @@ if(!isset($_SESSION['sess_email']) || $role!="student"){
         <div id="content">
 
             <!-- Topbar -->
-            <?php include 'top_bar.php'; ?>
+            <?php include 'top-bar.php'; ?>
             <!-- End of Topbar -->
 
             <!-- Begin Page Content -->
@@ -58,7 +58,7 @@ if(!isset($_SESSION['sess_email']) || $role!="student"){
                 </div>
 
                 <!--Header summary-->
-                <?php //require 'header_summary_student.php'; ?>
+                <?php //require 'header-summary-student.php'; ?>
 
                 <div class="card">
                     <div class="card-header border-bottom">

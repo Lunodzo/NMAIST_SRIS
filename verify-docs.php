@@ -1,3 +1,12 @@
+<?php
+session_start();
+$role = $_SESSION['sess_userrole'];
+if(!isset($_SESSION['sess_email']) || $role != "admin"){
+    if(!isset($_SESSION['sess_email']) || $role != "admission"){
+        header('Location: index.php?err=2');
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -41,7 +50,7 @@
             <div id="content">
 
                 <!-- Topbar -->
-                <?php require 'top_bar.php' ?>
+                <?php require 'top-bar.php' ?>
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->

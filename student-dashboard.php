@@ -43,7 +43,7 @@
             <div id="content">
 
                 <!-- Topbar -->
-                <?php include 'top_bar.php'; ?>
+                <?php include 'top-bar.php'; ?>
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
@@ -55,7 +55,7 @@
                     </div>
 
                     <!--Header summary-->
-                    <?php require 'header_summary_student.php'; ?>
+                    <?php require 'header-summary-student.php'; ?>
 
                         <div class="card">
                             <div class="card-header border-bottom">
@@ -120,7 +120,7 @@
                                                     </div>
                                                     <!-- Card Body -->
                                                     <div class="card-body">
-                                                        <form class="user" method="post" action="student_registration_upload.php">
+                                                        <form class="user" method="post" action="student-registration-upload.php">
                                                             <div class="form-group row">
                                                                 <div class="col-sm-4 mb-3 mb-sm-0">
                                                                     <label for="f_name">First Name</label>

@@ -27,7 +27,7 @@ if(mysqli_num_rows($query) > 0){
         session_write_close();
 
         if( $_SESSION['sess_userrole'] == "admin"){
-            header('Location: admi_dashboard.php');
+            header('Location: admi-dashboard.php');
         }else if($_SESSION['sess_userrole'] == "accountant"){
             header('Location: accounts.php');
         }else if($_SESSION['sess_userrole'] == "student"){

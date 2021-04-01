@@ -1,7 +1,7 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="admi_dashboard.php">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="admi-dashboard.php">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-school"></i>
                    <!-- <i><img class="img-profile rounded-circle"
@@ -16,7 +16,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="admi_dashboard.php">
+                <a class="nav-link" href="admi-dashboard.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -39,14 +39,14 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Registration:</h6>
                         <a class="collapse-item" href="admissions.php">Home</a>
-                        <a class="collapse-item" href="admissions_metrics.php">Admissions Metrics</a>
-                        <a class="collapse-item" href="student_registration.php">Register Students</a>
-                        <a class="collapse-item" href="verify_docs.php">Verify Documents</a>
+                        <a class="collapse-item" href="admissions-metrics.php">Admissions Metrics</a>
+                        <a class="collapse-item" href="student-registration.php">Register Students</a>
+                        <a class="collapse-item" href="verify-docs.php">Verify Documents</a>
 
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">Students' Catalogue:</h6>
-                        <a class="collapse-item" href="student_list.php">Students Listing</a>
-                        <a class="collapse-item" href="upload_bulk_student.php">Upload Bulk Students</a>
+                        <a class="collapse-item" href="student-list.php">Students Listing</a>
+                        <a class="collapse-item" href="upload-bulk-student.php">Upload Bulk Students</a>
                     </div>
                 </div>
             </li>
@@ -115,6 +115,14 @@
                 <a class="nav-link" href="#">
                     <i class="fas fa-fw fa-laptop-medical"></i>
                     <span>IT Department</span></a>
+            </li>
+
+
+            <!-- SITE ADMINISTRATION -->
+            <li class="nav-item">
+                <a class="nav-link" href="system-administration.php">
+                    <i class="fas fa-spinner fa-gear"></i>
+                    <span>System Administration</span></a>
             </li>
 
             

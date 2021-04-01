@@ -1,8 +1,10 @@
 <?php
 session_start();
 $role = $_SESSION['sess_userrole'];
-if(!isset($_SESSION['sess_email']) || $role!="admission"){
-    header('Location: index.php?err=2');
+if(!isset($_SESSION['sess_email']) || $role != "admin"){
+    if(!isset($_SESSION['sess_email']) || $role != "admission"){
+        header('Location: index.php?err=2');
+    }
 }
 ?>
 
@@ -39,7 +41,7 @@ if(!isset($_SESSION['sess_email']) || $role!="admission"){
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <?php require 'navigation.php';?>
+        <?php require 'navigation-admissions.php';?>
         <?php require 'connection.php';?>
         <!-- End of Sidebar -->
 
@@ -50,7 +52,7 @@ if(!isset($_SESSION['sess_email']) || $role!="admission"){
             <div id="content">
 
                 <!-- Topbar -->
-                <?php require 'top_bar.php' ?>
+                <?php require 'top-bar.php' ?>
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
@@ -61,7 +63,7 @@ if(!isset($_SESSION['sess_email']) || $role!="admission"){
                     <p class="mb-4">You have landed into Admissions Dashboard, If you think this is a mistake <a target="_blank"
                             href="#">Try menu below</a>.</p>
 
-                    <?php require 'header_summary.php'; ?>
+                    <?php require 'header-summary.php'; ?>
 
                     <!-- Student List Table -->
                     
@@ -93,13 +95,13 @@ if(!isset($_SESSION['sess_email']) || $role!="admission"){
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        <tr>
+
                                         <?php
                                         $sql = "SELECT * FROM student, course 
                                         where student.course_id = course.course_id";
                                         if($student_results = mysqli_query($conn, $sql)){
                                             while ($row = mysqli_fetch_assoc($student_results)) {
-                                                
+                                                echo "<tr>";
                                                 echo "<td>".$row['f_name']."&nbsp".$row['l_name']." </td>";
                                                 echo "<td>".$row['course_short_form']." </td>";
                                                 echo "<td>".$row['cohort']." </td>";
@@ -110,12 +112,12 @@ if(!isset($_SESSION['sess_email']) || $role!="admission"){
                                                 
                                                 <a href='#' class='d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm'><i
                                                 class='fas fa-edit fa-sm text-white-50'></i> Edit</a></td>";
-                                                
+                                                echo "</tr>";
                                         }
                                     }
 
                                         ?>
-                                        </tr>
+
                                         
                                     </tbody>
                                 </table>
