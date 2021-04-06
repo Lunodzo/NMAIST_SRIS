@@ -70,10 +70,33 @@ if(!isset($_SESSION['sess_email']) || $role != "admin"){
 
                     <h1 class="h4 mb-4 text-gray-800">Pending Bills</h1>
 
-                    <!-- DataTales Example -->
+                    <!-- Students Pending Bills -->
                     <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Pending Bills</h6>
+                        <div class="card-header py-6">
+                            <div class="row">
+                                <div class="col-md-10 m-0 font-weight-bold text-primary">
+                                    <h5>Pending Bills</h5>
+                                    <div class="font-weight-bold text-success">
+                                        <?php
+                                        if(isset($_GET['success'])){
+                                            $_SESSION['message'] = 'Your bill has been created';
+                                            $message = $_SESSION['message'];
+                                            echo $message;
+                                        }else if(isset($_GET['success1'])){
+                                            $_SESSION['message'] = 'Your bill has been cleared';
+                                            $message = $_SESSION['message'];
+                                            echo $message;
+                                        }
+                                        ?>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-2 m-0 float-right">
+                                    <button class="btn btn-primary btn-sm float-right" data-toggle="modal" data-target="#billForm">Create Bill</button>
+                                </div>
+
+                            </div>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -92,7 +115,7 @@ if(!isset($_SESSION['sess_email']) || $role != "admin"){
 
                                     <tbody>
                                     <?php
-                                    $sql = "SELECT * FROM `student_bill_view`";
+                                    $sql = "SELECT * FROM `student_bill_view` where status = 'pending'";
                                     if ($sql_results = mysqli_query($conn, $sql)){
                                         while($row = mysqli_fetch_assoc($sql_results)){
                                             echo "<tr>";
@@ -102,7 +125,7 @@ if(!isset($_SESSION['sess_email']) || $role != "admin"){
                                             echo "<td>".$row['date_created']." </td>";
                                             echo "<td>".$row['amount']." </td>";
                                             echo "<td><span class='badge badge-warning'>".$row['status']."</span></td>";
-                                            echo "<td><button class='btn btn-success btn-sm btn-block'> Clear </button></td>";
+                                            echo "<td><a class='btn btn-success btn-sm btn-block' href='accounts-bill-clear.php?bill-id=".$row['control_no']."'> Clear </a></td>";
                                             echo "</tr>";
                                         }
                                     }
@@ -212,26 +235,39 @@ if(!isset($_SESSION['sess_email']) || $role != "admin"){
                                     </div>
 
                                     <div class="card-body">
-                                        <form>
+                                        <form method="post" action="accounts-bill-post.php">
                                             <div class="form-group">
                                                 <label for="student">Choose Student</label>
-                                                <select class="form-control" id="student">
-                                                    <option>Student 1</option>
-                                                    <option>Student 2</option>
+                                                <select name="student" class="form-control" id="student">
+                                                    <?php
+                                                    $sql = "SELECT * from student";
+                                                    if($sql_results = mysqli_query($conn, $sql)){
+                                                        while($row = mysqli_fetch_assoc($sql_results)){
+                                                            echo "<option name='student' value=".$row['student_id'].">".$row['f_name']." ".$row['l_name']."</option>";
+                                                        }
+                                                    }
+                                                    ?>
                                                 </select>
                                             </div>
 
                                             <div class="form-group">
                                                 <label for="bill">Choose Bill</label>
-                                                <select class="form-control" id="bill">
-                                                    <option>Accommodation</option>
-                                                    <option>Fee</option>
+                                                <select name="bill" class="form-control" id="bill">
+                                                    <?php
+                                                    $sql = "SELECT * from bill";
+                                                    if($sql_results = mysqli_query($conn, $sql)){
+                                                        while($row = mysqli_fetch_assoc($sql_results)){
+                                                            echo "<option value=".$row['bill_id'].">".$row['bill_name']."</option>";
+                                                        }
+                                                    }
+                                                    ?>
                                                 </select>
                                             </div>
                                             <div class="form-group">
                                                 <label for="amount">Amount</label>
-                                                <input class="form-control" id="amount" type="number" placeholder="Enter Amount">
+                                                <input class="form-control" id="amount" name="amount" type="number" placeholder="Enter Amount">
                                             </div>
+                                            <button class="btn btn-primary btn-sm" type="submit">Create</button>
                                         </form>
                                     </div>
 
