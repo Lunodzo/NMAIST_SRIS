@@ -38,14 +38,13 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Registration:</h6>
-                        <a class="collapse-item" href="admissions.php">Start Registration</a>
-                        <a class="collapse-item" href="admissions.php">Upload Documents</a>
-                        <a class="collapse-item" href="verify-docs.php">Verify Documents</a>
+                        <a class="collapse-item" href="404.php">Start Registration</a>
+                        <a class="collapse-item" href="student-upload-document.php">Upload Documents</a>
 
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">Students' Ground:</h6>
-                        <a class="collapse-item" href="404.php">Students Profile</a>
-                        <a class="collapse-item" href="blank.html">Check Reports</a>
+                        <a class="collapse-item" href="student-profile.php">Students Profile</a>
+                        <a class="collapse-item" href="student-report.php">Check Reports</a>
                     </div>
                 </div>
             </li>
@@ -64,7 +63,7 @@
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="student-bills.php">Bills</a>
-                        <a class="collapse-item" href="register.html">Payments</a>
+                        <a class="collapse-item" href="student-payment.php">Payments</a>
                     </div>
                 </div>
             </li>

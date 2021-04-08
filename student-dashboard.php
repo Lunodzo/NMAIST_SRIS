@@ -241,9 +241,6 @@ if(!isset($email) || $role!="student"){
                                                     </div>
                                                 </div>
                                             </div>
-
-
-
                                         </div>
                                     </div>
 
@@ -377,7 +374,129 @@ if(!isset($email) || $role!="student"){
                                     </div>
                                     <div class="tab-pane fade" id="document" role="tabpanel" aria-labelledby="document-tab">
                                         <h5 class="card-title">Documents</h5>
-                                        <p class="card-text">...</p>
+                                        <div class="card shadow mb-4 card-header-actions">
+                                            <div class="card-header">My Documents
+
+                                                <?php
+                                                if(isset($_GET['success'])){
+                                                    echo "<label class='alert-success small'>Document Uploaded</label>";
+                                                }else if (isset($_GET['failed'])){
+                                                    echo "<label class='alert-warning'>Document Upload Failed</label>";
+                                                }else if (isset($_GET['none'])){
+                                                    echo "<label class='alert-warning'>No file</label>";
+                                                }else if (isset($_GET['problem'])){
+                                                    echo "<label class='alert-warning'>There is a problem with a file</label>";
+                                                }else if(isset($_GET['deleted'])){
+                                                    echo "<label class='alert-warning'>A file has been deleted</label>";
+                                                }else if(isset($_GET['deleted_failed'])){
+                                                    echo "<label class='alert-warning small'>Deletion failed</label>";
+                                                }
+                                                ?>
+                                                <button class="btn btn-primary btn-sm float-right" data-toggle="modal" data-target="#doc-upload">Upload</button>
+                                            </div>
+
+                                            <div class="card-body">
+                                                <div class="table-responsive">
+                                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>File Name</th>
+                                                            <th>Document Category</th>
+                                                            <th>Document Type</th>
+                                                            <th>Status</th>
+                                                            <th>Actions</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <?php
+                                                        $sql = "SELECT * FROM document_category, document_type, student_document, student 
+                                        where document_category.document_category_id = document_type.document_category_id 
+                                        AND document_type.document_type_id = student_document.document_type_id AND 
+                                              student.student_id = student_document.student_id AND email = '$email'";
+                                                        if($student_results = mysqli_query($conn, $sql)){
+                                                            while ($row = mysqli_fetch_assoc($student_results)) {
+                                                                echo "<tr>";
+                                                                echo "<td>".$row['document_type']." </td>";
+                                                                echo "<td>".$row['document_category']." </td>";
+                                                                echo "<td>".$row['document_type']." </td>";
+                                                                echo "<td> <span class='badge badge-success'>Uploaded</span></td>";
+                                                                echo "<td><a href='documents/$row[file]' target='_blank'><i class='fas fa-eye fa-sm'></i></a>&nbsp&nbsp";
+                                                                echo "<a href='student-delete-document.php?file=".$row['file']."'><i class='fas fa-trash-alt fa-sm'></i></a>&nbsp&nbsp";
+                                                                echo "<a href='documents/$row[file]' download><i class='fas fa-download fa-sm'></i></a>&nbsp&nbsp";
+                                                                echo "<a href='#'><i class='fas fa-ellipsis-v fa-sm'></i></a>";
+                                                                echo "</td>";
+                                                                echo "</tr>";
+                                                            }
+                                                        }
+
+                                                        ?>
+                                                        <!--                                DOCUMENT UPLOAD TOGGLE-->
+                                                        <div id="doc-upload" class="modal" role="dialog">
+                                                            <div class="modal-dialog">
+
+                                                                <!-- Modal content-->
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <div class="card-header">
+                                                                            <div class="row block">
+                                                                                <h5 class="modal-title">Document Upload</h5>
+                                                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                            </div>
+
+                                                                        </div>
+
+                                                                    </div>
+
+                                                                    <div class="card-body">
+                                                                        <form method="post" action="student-upload-document-action.php" enctype="multipart/form-data">
+                                                                            <div class="form-group">
+                                                                                <label for="student">This is you Uploading</label>
+                                                                                <select name="student" class="form-control" id="student">
+                                                                                    <?php
+                                                                                    $sql = "SELECT * from student WHERE email = '$email'";
+                                                                                    if($sql_results = mysqli_query($conn, $sql)){
+                                                                                        while($row = mysqli_fetch_assoc($sql_results)){
+                                                                                            echo "<option name='student' value=".$row['student_id'].">".$row['f_name']." ".$row['l_name']."</option>";
+                                                                                        }
+                                                                                    }
+                                                                                    ?>
+                                                                                </select>
+                                                                            </div>
+
+                                                                            <div class="form-group">
+                                                                                <label for="doc-type">Document Type</label>
+                                                                                <select name="doc-type" class="form-control" id="bill">
+                                                                                    <?php
+                                                                                    $sql = "SELECT * from document_type";
+                                                                                    if($sql_results = mysqli_query($conn, $sql)){
+                                                                                        while($row = mysqli_fetch_assoc($sql_results)){
+                                                                                            echo "<option value=".$row['document_type_id'].">".$row['document_type']."</option>";
+                                                                                        }
+                                                                                    }
+                                                                                    ?>
+                                                                                </select>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label>File | </label><label class="text-danger small">&nbspPDF only</label>
+                                                                                <input class="form-control" name="file" type="file" accept="application/pdf">
+                                                                            </div>
+                                                                            <input class="btn btn-primary btn-sm" type="submit" name="submit" value="submit"></input>
+                                                                        </form>
+                                                                    </div>
+
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
