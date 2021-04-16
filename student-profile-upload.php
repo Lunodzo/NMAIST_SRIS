@@ -29,11 +29,10 @@ if(isset($_POST['submit'])){
                     echo "File moved";
                     $query = "INSERT INTO student_profile (student_id, email, picture) VALUES ('$student_id', '$email', '$final_name')";
                     mysqli_query($conn, $query);
+                    $success = $_SESSION['success'];
+                    header("Location: student-dashboard.php?success");
+                    exit();
                     ?>
-                <script>
-                    window.location.href='student-dashboard.php?success';
-                    //alert('successfully uploaded');
-                </script>
                 <?php
                 }else{
                     echo "Umechema";
