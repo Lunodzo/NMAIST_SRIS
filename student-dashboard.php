@@ -31,6 +31,15 @@ if(!isset($email) || $role!="student"){
 
     <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <style>
+        .image {
+            background: url(#) 50% 50% no-repeat; /* 50% 50% centers image in div */
+            object-fit: cover;
+            width: 250px;
+            height: 205px;
+        }
+    </style>
+
 
 </head>
 
@@ -95,19 +104,130 @@ if(!isset($email) || $role!="student"){
                                                     <div
                                                             class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                                         <h6 class="m-0 font-weight-bold text-primary">Profile Picture</h6>
+                                                        <?php
+                                                        if(isset($_GET['success'])){
+                                                            echo "<label class='alert-success small'>Picture Uploaded</label>";
+                                                        }else if (isset($_GET['failed'])){
+                                                            echo "<label class='alert-warning'>Upload Failed</label>";
+                                                        }else if(isset($_GET['format'])){
+                                                            echo "<label class='alert-warning'>Upload an Image</label>";
+                                                        }else if(isset($_GET['name'])){
+                                                            echo "<label class='alert-warning'>Name Error</label>";
+                                                        }else if(isset($_GET['no_name'])){
+                                                            echo "<label class='alert-warning'>Name is not set</label>";
+                                                        }
+                                                        ?>
                                                     </div>
 
                                                     <!-- Profile Picture -->
                                                     <div class="card-body">
-                                                        <div class="row">
-                                                            <img class="img-profile rounded-circle"
-                                                                 src="img/undraw_profile_3.svg" alt="abc">
-                                                        </div>
-                                                        <hr>
+
                                                         <div class="row">
                                                             <div class="col-sm-12">
-                                                                <a type="file" href="#" class="btn btn-primary btn-block">
-                                                                    Upload Picture </a>
+
+
+                                                                <?php
+                                                                $sql = "SELECT picture from student_profile WHERE email = '$email'";
+                                                                $query = mysqli_query($conn, $sql);
+                                                                $row = mysqli_fetch_assoc($query);
+                                                                if(mysqli_num_rows($query)>=1){
+                                                                    echo '<img class="image img-profile rounded-circle img-thumbnail img-fluid"
+                                                                     src="img/student/' . $row['picture'] . '" alt="Picture">';
+                                                                }else{
+                                                                    echo '<img class="image img-profile rounded-circle img-thumbnail img-fluid"
+                                                                     src="img/undraw_profile_3.svg" alt="Picture">';
+                                                                }
+                                                                ?>
+                                                                <hr>
+                                                                <?php
+                                                                $sql = "SELECT * FROM student_profile where email = '$email'";
+                                                                $query = mysqli_query($conn, $sql);
+                                                                if(mysqli_num_rows($query)>=1){
+                                                                    echo '<button type="file" class="btn btn-primary btn-block" data-toggle="modal"
+                                                                   data-target="#profileFormUpload">
+                                                                    Change Picture </button>';
+                                                                }else{
+                                                                    echo '<button type="file" class="btn btn-primary btn-block" data-toggle="modal"
+                                                                   data-target="#profileForm">
+                                                                    Upload Picture </button>';
+                                                                }
+                                                                ?>
+
+
+<!--                                                                PROFILE UPLOAD MODAL-->
+                                                                <div class="modal fade" id="profileForm" role="dialog">
+                                                                    <div class="modal-dialog">
+                                                                        <!-- Modal content-->
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                <div class="card-header">
+                                                                                    <div class="row block">
+                                                                                        <h5 class="modal-title">Profile Upload</h5>
+                                                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="card-body">
+                                                                                <form method="POST" action="student-profile-upload.php" id="profile-form" enctype="multipart/form-data">
+                                                                                    <div class="form-group">
+                                                                                        <input type="file" name="profile" class="input-group"/>
+                                                                                        <hr>
+                                                                                        <input class="btn btn-primary btn-block" name="submit" value="submit" type="submit"></input>
+                                                                                    </div>
+                                                                                </form>
+                                                                            </div>
+
+<!--                                                                            <script type="text/javascript">-->
+<!--                                                                                function form_submit() {-->
+<!--                                                                                    document.getElementById("profile-form").submit();-->
+<!--                                                                                }-->
+<!--                                                                            </script>-->
+
+                                                                            <div class="modal-footer">
+                                                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+
+                                                                <!--                                                                PROFILE UPLOAD MODAL-->
+                                                                <div class="modal fade" id="profileFormUpload" role="dialog">
+                                                                    <div class="modal-dialog">
+                                                                        <!-- Modal content-->
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                <div class="card-header">
+                                                                                    <div class="row block">
+                                                                                        <h5 class="modal-title">Profile Edit</h5>
+                                                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="card-body">
+                                                                                <form method="POST" action="student-profile-edit.php" id="profile-form" enctype="multipart/form-data">
+                                                                                    <div class="form-group">
+                                                                                        <input type="file" name="profile" class="input-group"/>
+                                                                                        <hr>
+                                                                                        <input class="btn btn-primary btn-block" name="submit" value="submit" type="submit"></input>
+                                                                                    </div>
+                                                                                </form>
+                                                                            </div>
+
+                                                                            <!--                                                                            <script type="text/javascript">-->
+                                                                            <!--                                                                                function form_submit() {-->
+                                                                            <!--                                                                                    document.getElementById("profile-form").submit();-->
+                                                                            <!--                                                                                }-->
+                                                                            <!--                                                                            </script>-->
+
+                                                                            <div class="modal-footer">
+                                                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
