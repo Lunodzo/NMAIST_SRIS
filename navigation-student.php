@@ -44,7 +44,6 @@
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">Students' Ground:</h6>
                         <a class="collapse-item" href="student-profile.php">Students Profile</a>
-                        <a class="collapse-item" href="student-report.php">Check Reports</a>
                     </div>
                 </div>
             </li>
@@ -79,12 +78,11 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Accommodations:</h6>
-                        <a class="collapse-item" href="login.html">Request Room</a>
-                        <a class="collapse-item" href="register.html">Check Hostel Availability</a>
+                        <a class="collapse-item" href="student-hostel.php">Check Hostel Availability</a>
+
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">Health Insurance</h6>
-                        <a class="collapse-item" href="404.php">Upload Insurance</a>
-                        <a class="collapse-item" href="404.php">Download NHIF Form</a>
+                        <a class="collapse-item" href="student-nhif.php">Download NHIF Form</a>
 
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">Counselling & Support</h6>

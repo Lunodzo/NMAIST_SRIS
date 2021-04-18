@@ -1,5 +1,5 @@
 <?php
-require 'connection.php';
+include 'connection.php';
 session_start();
 $role = $_SESSION['sess_userrole'];
 $email = $_SESSION['sess_email'];
@@ -19,7 +19,7 @@ if(!isset($email) || $role!="student"){
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SRIS - Documents Repository</title>
+    <title>SRIS - NHIF Documents</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -29,9 +29,6 @@ if(!isset($email) || $role!="student"){
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this page -->
-    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
 
@@ -58,12 +55,10 @@ if(!isset($email) || $role!="student"){
             <div class="container-fluid">
 
                 <!-- Page Heading -->
-                <h1 class="h3 mb-4 text-gray-800">Documents Repository</h1>
+                <h1 class="h3 mb-4 text-gray-800">NHIF Documents</h1>
 
-                <!-- Document List Table -->
-
+                <!-- NHIF DOCUMENTS -->
                 <div class="card shadow mb-4 card-header-actions">
-
                     <div class="card-header">
                         <div class="row">
                             <div class="col-md-10 m-0 font-weight-bold text-primary">
@@ -106,7 +101,8 @@ if(!isset($email) || $role!="student"){
                                 $sql = "SELECT * FROM document_category, document_type, student_document, student 
                                         where document_category.document_category_id = document_type.document_category_id 
                                         AND document_type.document_type_id = student_document.document_type_id AND 
-                                              student.student_id = student_document.student_id AND email = '$email'";
+                                              student.student_id = student_document.student_id AND email = '$email' AND 
+                                              document_type = 'Health Insurance'";
                                 if($student_results = mysqli_query($conn, $sql)){
                                     while ($row = mysqli_fetch_assoc($student_results)) {
                                         echo "<tr>";
@@ -124,7 +120,7 @@ if(!isset($email) || $role!="student"){
                                 }
 
                                 ?>
-<!--                                DOCUMENT UPLOAD TOGGLE-->
+                                <!--                                DOCUMENT UPLOAD TOGGLE-->
                                 <div id="doc-upload" class="modal" role="dialog">
                                     <div class="modal-dialog">
 
@@ -142,7 +138,7 @@ if(!isset($email) || $role!="student"){
                                             </div>
 
                                             <div class="card-body">
-                                                <form method="post" action="student-upload-document-action.php" enctype="multipart/form-data">
+                                                <form method="post" action="student-nhif-upload.php" enctype="multipart/form-data">
                                                     <div class="form-group">
                                                         <label for="student">This is you Uploading</label>
                                                         <select name="student" class="form-control" id="student">
@@ -161,7 +157,7 @@ if(!isset($email) || $role!="student"){
                                                         <label for="doc-type">Document Type</label>
                                                         <select name="doc-type" class="form-control" id="bill">
                                                             <?php
-                                                            $sql = "SELECT * from document_type";
+                                                            $sql = "SELECT * from document_type WHERE document_type='Health Insurance'";
                                                             if($sql_results = mysqli_query($conn, $sql)){
                                                                 while($row = mysqli_fetch_assoc($sql_results)){
                                                                     echo "<option value=".$row['document_type_id'].">".$row['document_type']."</option>";
@@ -177,21 +173,19 @@ if(!isset($email) || $role!="student"){
                                                     <input class="btn btn-primary btn-sm" type="submit" name="submit" value="submit"></input>
                                                 </form>
                                             </div>
-
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
-
                                 </tbody>
                             </table>
                         </div>
                     </div>
+                    <a href='documents/$row[file]' download class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm col-2">
+                        <i class='fas fa-download fa-sm text-white-50'></i>Download NHIF Form</a>
                 </div>
-
             </div>
             <!-- /.container-fluid -->
 
@@ -223,15 +217,8 @@ if(!isset($email) || $role!="student"){
 <!-- Core plugin JavaScript-->
 <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-<!-- Page level plugins -->
-<script src="vendor/datatables/jquery.dataTables.min.js"></script>
-<script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
 <!-- Custom scripts for all pages-->
 <script src="js/sb-admin-2.min.js"></script>
-
-<!-- Page level custom scripts -->
-<script src="js/demo/datatables-demo.js"></script>
 
 </body>
 

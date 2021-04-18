@@ -66,13 +66,14 @@ if(!isset($email) || $role!="student"){
                     <div class="card-header py-6">
                         <div class="row">
                             <div class="col-md-10 m-0 font-weight-bold text-primary">
-                                <h4>Paid Bills</h4>
+                                Paid Bills
                                 <div class="font-weight-bold text-success">
                                     <?php
                                     if(isset($_GET['success'])){
                                         $_SESSION['message'] = 'Your bill has been created';
                                         $message = $_SESSION['message'];
                                         echo $message;
+                                        unset($_SESSION['message']);
                                     }
                                     ?>
                                 </div>

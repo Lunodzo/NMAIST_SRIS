@@ -124,8 +124,6 @@ if(!isset($email) || $role!="student"){
 
                                                         <div class="row">
                                                             <div class="col-sm-12">
-
-
                                                                 <?php
                                                                 $sql = "SELECT picture from student_profile WHERE email = '$email'";
                                                                 $query = mysqli_query($conn, $sql);
