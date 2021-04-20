@@ -38,12 +38,12 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Registration:</h6>
-                        <a class="collapse-item" href="404.php">Start Registration</a>
+                        <a class="collapse-item" href="student-registration-process.php">Start Registration</a>
                         <a class="collapse-item" href="student-upload-document.php">Upload Documents</a>
 
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">Students' Ground:</h6>
-                        <a class="collapse-item" href="student-profile.php">Students Profile</a>
+                        <a class="collapse-item" href="student-dashboard.php">Students Profile</a>
                     </div>
                 </div>
             </li>
@@ -86,13 +86,13 @@
 
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">Counselling & Support</h6>
-                        <a class="collapse-item" href="404.php">Request an Appointment</a>
+                        <a class="collapse-item" href="student-helpdesk.php">Request an Appointment</a>
                     </div>
                 </div>
             </li>
             <!-- IT DEPARTMENT -->
             <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="student-it-department.php">
                     <i class="fas fa-fw fa-laptop-medical"></i>
                     <span>IT Department</span></a>
             </li>

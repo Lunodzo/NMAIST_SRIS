@@ -60,8 +60,20 @@ if(!isset($_SESSION))
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['sess_name']; ?></span>
-                <img class="img-profile rounded-circle"
-                    src="img/mandela_logo.png" alt="kj">
+                <?php
+                $email = $_SESSION['sess_email'];
+                $sql = "SELECT picture from student_profile WHERE email = '$email'";
+                $query = mysqli_query($conn, $sql);
+                $row = mysqli_fetch_assoc($query);
+                if(mysqli_num_rows($query)>=1){
+                    echo '<img class="image img-profile rounded-circle img-fluid"
+                                                                     src="img/student/' . $row['picture'] . '" alt="Picture">';
+                }else{
+                    echo '<img class="img-profile rounded-circle"
+                    src="img/mandela_logo.png" alt="kj">';
+                }
+                ?>
+
             </a>
             <!-- Dropdown - User Information -->
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"

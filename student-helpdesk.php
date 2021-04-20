@@ -1,6 +1,7 @@
 <?php
 session_start();
 $role = $_SESSION['sess_userrole'];
+$email = $_SESSION['sess_email'];
 if(!isset($_SESSION['sess_email']) || $role!="student"){
     header('Location: index.php?err=2');
 }
@@ -54,20 +55,38 @@ if(!isset($_SESSION['sess_email']) || $role!="student"){
 
                 <!-- Page Heading -->
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-4 text-gray-800">Student HelpDesk</h1>
+                    <h3 class="h3 mb-4 text-gray-800">Student HelpDesk</h3>
                 </div>
-
-                <!--Header summary-->
-                <?php //require 'header-summary-student.php'; ?>
+                <div class="text-body">
+                    <?php
+                    if(isset($_GET['success'])){
+                        echo "<label class='alert-success small'>Request Sent</label>";
+                    }else if (isset($_GET['failed'])){
+                        echo "<label class='alert-warning'>Request submission failed</label>";
+                    }else if(isset($_GET['exists'])){
+                        echo "<label class='alert-warning'>Request exists</label>";
+                    }else if(isset($_GET['success_service'])){
+                        echo "<label class='alert-warning'>Request Sent</label>";
+                    }else if(isset($_GET['failed_service'])){
+                        echo "<label class='alert-warning'>Request failed</label>";
+                    }else if(isset($_GET['exists_service'])){
+                        echo "<label class='alert-warning'>Request exists</label>";
+                    }
+                    ?>
+                </div>
 
                 <div class="card">
                     <div class="card-header border-bottom">
                         <ul class="nav nav-tabs card-header-tabs" id="cardTab" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" id="overview-tab" href="#overview" data-toggle="tab" role="tab" aria-controls="overview" aria-selected="true">IT Support</a>
+                                <a class="nav-link active" id="overview-tab" href="#overview" data-toggle="tab" role="tab"
+                                   aria-controls="overview" aria-selected="true">Service Request</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="" href="#document" data-toggle="tab" role="tab" aria-controls="document" aria-selected="false">Counseling </a>
+                                <a class="nav-link" id="" href="#document" data-toggle="tab" role="tab" aria-controls="document"
+                                   aria-selected="false">Counseling </a>
+                            </li>
+                            <li>
                             </li>
                         </ul>
                     </div>
@@ -75,12 +94,17 @@ if(!isset($_SESSION['sess_email']) || $role!="student"){
                     <div class="card-body">
                         <div class="tab-content" id="cardTabContent">
                             <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
-                                <h5 class="card-title">Submit IT Service request</h5>
+                                <h5 class="card-title">Submit Service request</h5>
                                 <div class="row">
 
                                     <!-- FORM CARD -->
                                     <div class="col-xl-12 col-lg-7">
                                         <div class="card shadow mb-4">
+                                            <?php
+                                            $sql = "SELECT * FROM student where email = '$email'";
+                                            $query = mysqli_query($conn, $sql);
+                                            $result = mysqli_fetch_assoc($query);
+                                            ?>
                                             <!-- Card Header - Dropdown -->
                                             <div
                                                 class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -94,25 +118,25 @@ if(!isset($_SESSION['sess_email']) || $role!="student"){
 
                                             <!-- Card Body -->
                                             <div class="card-body">
-                                                <form class="user" method="post" action="#">
+                                                <form class="user" method="POST" action="student-service-action.php">
                                                     <div class="form-group row">
                                                         <div class="col-sm-6 mb-3 mb-sm-0">
                                                             <label for="reg-no">Registration Number</label>
                                                             <input type="text" class="form-control" id="reg-no"
-                                                                   placeholder="Fetch form DB" readonly>
+                                                                   name ="reg-no" placeholder="<?php echo $result['student_id']; ?>" readonly/>
                                                         </div>
                                                         <div class="col-sm-6 mb-3 mb-sm-0">
-                                                            <label
-                                                                for="phone-no">Phone Number</label><input type="tel" class="form-control" id="phone-no"
-                                                                                              placeholder="Phone number to reach you out">
+                                                            <label for="phone">Phone Number</label>
+                                                            <input type="tel" class="form-control" id="phone"
+                                                                   name="phone" placeholder="<?php echo $result['phone']; ?>" readonly>
                                                         </div>
                                                     </div>
-
 
                                                     <div class="form-group row">
                                                         <div class="col-sm-12 mb-3 mb-sm-0">
                                                             <label for="email">Email</label>
-                                                            <input type="email" class="form-control " id="email" placeholder="you@nm-aist.ac.tz" name="email" readonly>
+                                                            <input type="email" class="form-control " id="email"
+                                                                   placeholder="<?php echo $result['email']; ?>" name="email" readonly>
                                                         </div>
                                                     </div>
 
@@ -130,35 +154,27 @@ if(!isset($_SESSION['sess_email']) || $role!="student"){
                                                         <div class="col-sm-6">
                                                             <label for="location">Location</label>
                                                             <input type="text" class="form-control" id="location"
-                                                                   placeholder="Indicate where is the problem?" required>
+                                                                   name="location" placeholder="Indicate where is the problem?" required>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group row">
                                                         <div class="col-sm-12 mb-3 mb-sm-0">
                                                             <label for="description">Problem Description</label>
-
-                                                                <textarea class= "form-control" rows = "5" cols = "60" name = "description" placeholder="Describe your problem">
-                                                                </textarea>
-
+                                                            <textarea class= "form-control" name = "description"
+                                                                      placeholder="Describe your problem"></textarea>
                                                         </div>
                                                     </div>
 
                                                     <div class="row">
                                                         <div class="col-sm-3">
-                                                            <a type="submit" class="btn btn-primary btn-block">
-                                                                Submit
-                                                            </a>
+                                                            <input type="submit" name="submit" class="btn btn-primary btn-block"/>
                                                         </div>
-
                                                     </div>
                                                 </form>
                                             </div>
                                         </div>
                                     </div>
-
-
-
                                 </div>
                             </div>
 
@@ -182,32 +198,32 @@ if(!isset($_SESSION['sess_email']) || $role!="student"){
 
                                             <!-- Card Body -->
                                             <div class="card-body">
-                                                <form class="user" method="post" action="#">
+                                                <form class="user" method="POST" action="student-appointment-action.php">
                                                     <div class="form-group row">
                                                         <div class="col-sm-6 mb-3 mb-sm-0">
                                                             <label for="reg-no">Registration Number</label>
-                                                            <input type="text" class="form-control" id="reg-no"
-                                                                   placeholder="Fetch form DB" readonly>
+                                                            <input type="text" class="form-control" id="reg-no" name="reg-no"
+                                                                   placeholder="<?php echo $result['student_id']; ?>" readonly>
                                                         </div>
                                                         <div class="col-sm-6 mb-3 mb-sm-0">
-                                                            <label
-                                                                for="phone-no">Phone Number</label><input type="tel" class="form-control" id="phone-no"
-                                                                                                          placeholder="Phone number to reach you out">
+                                                            <label for="phone-no">Phone Number</label>
+                                                            <input type="tel" class="form-control" id="phone-no" name="phone"
+                                                                   placeholder="<?php echo $result['phone']; ?>">
                                                         </div>
                                                     </div>
-
 
                                                     <div class="form-group row">
                                                         <div class="col-sm-12 mb-3 mb-sm-0">
                                                             <label for="email">Email</label>
-                                                            <input type="email" class="form-control " id="email" placeholder="you@nm-aist.ac.tz" name="email" readonly>
+                                                            <input type="email" class="form-control " id="email"
+                                                                   placeholder="<?php echo $result['email']; ?>" name="email">
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group row">
                                                         <div class="col-sm-6">
                                                             <label for="department">Nature of Service</label>
-                                                            <select class = "selectpicker form-control" id = "department" name="department">
+                                                            <select class = "selectpicker form-control" id = "department" name="nature">
                                                                 <option>Consultation</option>
                                                                 <option>Counselling</option>
                                                                 <option>Advise</option>
@@ -221,6 +237,7 @@ if(!isset($_SESSION['sess_email']) || $role!="student"){
                                                                 <option>Hostel A</option>
                                                                 <option>Hostel B</option>
                                                                 <option>PhD House</option>
+                                                                <option>Off-Campus</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -228,49 +245,34 @@ if(!isset($_SESSION['sess_email']) || $role!="student"){
                                                     <div class="form-group row">
                                                         <div class="col-sm-12 mb-3 mb-sm-0">
                                                             <label for="description">Details</label>
-
-                                                            <textarea class= "form-control" rows = "5" placeholder="Any helpful details">
+                                                            <textarea class= "form-control" rows = "5" name="details" placeholder="Any helpful details">
                                                                 </textarea>
-
                                                         </div>
                                                     </div>
 
                                                     <div class="row">
                                                         <div class="col-sm-3">
-                                                            <a type="submit" class="btn btn-primary btn-block">
-                                                                Submit
-                                                            </a>
+                                                            <input type="submit" name="submit" id="submit" class="btn btn-primary btn-block"/>
                                                         </div>
-
                                                     </div>
                                                 </form>
                                             </div>
                                         </div>
                                     </div>
-
-
-
                                 </div>
-
                             </div>
                         </div>
                     </div>
                 </div>
-
-
             </div>
             <!-- /.container-fluid -->
-
         </div>
         <!-- End of Main Content -->
-
         <!-- Footer -->
         <?php include 'footer.php'; ?>
         <!-- End of Footer -->
-
     </div>
     <!-- End of Content Wrapper -->
-
 </div>
 <!-- End of Page Wrapper -->
 

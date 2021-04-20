@@ -37,10 +37,6 @@ if(isset($_POST['submit'])){
                 }else{
                     echo "Umechema";
                     ?>
-<!--                    <script>-->
-<!--                        window.location.href='student-dashboard.php?failed';-->
-<!--                        //alert('successfully uploaded');-->
-<!--                    </script>-->
                     <?php
                 }
             }else{

@@ -27,11 +27,8 @@ if(isset($_POST['submit'])){
             $location = "img/student/";
             if(move_uploaded_file($temp_name, $location.$final_name)){
                 echo "File moved";
-                //$query = "DELETE FROM student_profile where email = '$email' && student_id = '$student_id'" or die(mysqli_error());
-                //$query1 = "INSERT INTO student_profile (student_id, email, picture) VALUES ('$student_id', '$email', '$final_name')";
                 $query = "UPDATE student_profile SET picture = '$final_name' WHERE student_id = '$student_id' && email = '$email'";
                 mysqli_query($conn, $query);
-                //mysqli_query($conn, $query1);
                 ?>
                 <script>
                     window.location.href='student-dashboard.php?success';

@@ -32,6 +32,7 @@ if(!isset($email) || $role!="student"){
     <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     <style>
+        /*Styes for the Profile Picture*/
         .image {
             background: url(#) 50% 50% no-repeat; /* 50% 50% centers image in div */
             object-fit: cover;
@@ -606,10 +607,8 @@ if(!isset($email) || $role!="student"){
                                                                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                                                     </div>
                                                                 </div>
-
                                                             </div>
                                                         </div>
-
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -620,7 +619,7 @@ if(!isset($email) || $role!="student"){
                             </div>
                         </div>
 
-                    <!--                        BILL FORM MODEL-->
+                    <!--BILL FORM MODEL-->
                     <div id="billForm" class="modal fade" role="dialog">
                         <div class="modal-dialog">
 
@@ -632,26 +631,11 @@ if(!isset($email) || $role!="student"){
                                             <h5 class="modal-title">Bill</h5>
                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                                         </div>
-
                                     </div>
-
                                 </div>
 
                                 <div class="card-body">
                                     <form method = "POST" action="student-bill-post.php">
-                                        <!--                                        <div class="form-group">-->
-                                        <!--                                            <label for="student">Choose Student</label>-->
-                                        <!--                                            <select class="form-control" id="student">-->
-                                        <!--                                                --><?php
-                                        //                                                $sql = "SELECT * from student where email = '$email'";
-                                        //                                                $sql_results = mysqli_query($conn, $sql);
-                                        //                                                $row = mysqli_fetch_assoc($sql_results);
-                                        //                                                //echo "<option>".$sql_results['f_name']."</option>";
-                                        //                                                ?>
-                                        <!--                                                <option>--><?php //echo $row['f_name']." ".$row['l_name']; ?><!--</option>-->
-                                        <!--                                            </select>-->
-                                        <!--                                        </div>-->
-
                                         <div class="form-group">
                                             <label for="bill">Choose Bill</label>
                                             <select class="form-control" id="bill" name="bill">
