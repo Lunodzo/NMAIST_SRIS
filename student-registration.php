@@ -363,7 +363,6 @@ if(!isset($_SESSION['sess_email']) || $role != "admin"){
                                 Register Student
                                 </a> 
                             </div>
-                        
                         </div>
                     </form>
                             <hr>

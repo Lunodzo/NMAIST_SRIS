@@ -39,7 +39,7 @@ if(mysqli_num_rows($query) > 0){
         }else if ($_SESSION['sess_userrole'] == "welfare"){
             header('Location: welfare-dashboard.php');
         }else{
-            header('Location: 404.php');
+            header('Location: index.php?err=1');
         }
     }
 }

@@ -4,8 +4,17 @@ if(!isset($_SESSION))
 {
     session_start();
 }
-//$_SESSION['sess_fname'] = $row['f_name']."&nbsp".$row['l_name'];
 ?>
+
+<style>
+    /* Styles for the Profile Picture*/
+    .image {
+        background: url(#) 50% 50% no-repeat; /* 50% 50% centers image in div */
+        object-fit: cover;
+        width: 250px;
+        height: 205px;
+    }
+</style>
 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
     <!-- Sidebar Toggle (Topbar) -->
     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">

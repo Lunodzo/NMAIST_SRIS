@@ -12,7 +12,6 @@ if(!isset($email) || $role!="student"){
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -78,10 +77,10 @@ if(!isset($email) || $role!="student"){
                             <div class="card-header border-bottom">
                                 <ul class="nav nav-tabs card-header-tabs" id="cardTab" role="tablist">
                                     <li class="nav-item">
-                                        <a class="nav-link active" id="overview-tab" href="#overview" data-toggle="tab" role="tab" aria-controls="overview" aria-selected="true">Profile</a>
+                                        <a class="nav-link active" id="overview-tab" href="#overview" data-toggle="tab" role="tab" aria-controls="overview" aria-selected="false">Profile</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" id="example-tab" href="#bills" data-toggle="tab" role="tab" aria-controls="example" aria-selected="false">Bills</a>
+                                        <a class="nav-link" id="example-tab" href="#bills" data-toggle="tab" role="tab" aria-controls="example" aria-selected="true">Bills</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" id="example-tab" href="#payments" data-toggle="tab" role="tab" aria-controls="example" aria-selected="false">Payments</a>
@@ -177,12 +176,6 @@ if(!isset($email) || $role!="student"){
                                                                                 </form>
                                                                             </div>
 
-<!--                                                                            <script type="text/javascript">-->
-<!--                                                                                function form_submit() {-->
-<!--                                                                                    document.getElementById("profile-form").submit();-->
-<!--                                                                                }-->
-<!--                                                                            </script>-->
-
                                                                             <div class="modal-footer">
                                                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                                                             </div>
@@ -214,13 +207,6 @@ if(!isset($email) || $role!="student"){
                                                                                     </div>
                                                                                 </form>
                                                                             </div>
-
-                                                                            <!--                                                                            <script type="text/javascript">-->
-                                                                            <!--                                                                                function form_submit() {-->
-                                                                            <!--                                                                                    document.getElementById("profile-form").submit();-->
-                                                                            <!--                                                                                }-->
-                                                                            <!--                                                                            </script>-->
-
                                                                             <div class="modal-footer">
                                                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                                                             </div>
@@ -491,6 +477,7 @@ if(!isset($email) || $role!="student"){
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="tab-pane fade" id="document" role="tabpanel" aria-labelledby="document-tab">
                                         <h5 class="card-title">Documents</h5>
                                         <div class="card shadow mb-4 card-header-actions">
@@ -536,7 +523,7 @@ if(!isset($email) || $role!="student"){
                                                             while ($row = mysqli_fetch_assoc($student_results)) {
                                                                 echo "<tr>";
                                                                 echo "<td>".$row['document_type']." </td>";
-                                                                echo "<td>".$row['document_category']." </td>";
+                                                                echo "<td>".$row['document_cat']." </td>";
                                                                 echo "<td>".$row['document_type']." </td>";
                                                                 echo "<td> <span class='badge badge-success'>Uploaded</span></td>";
                                                                 echo "<td><a href='documents/$row[file]' target='_blank'><i class='fas fa-eye fa-sm'></i></a>&nbsp&nbsp";

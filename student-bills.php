@@ -127,14 +127,6 @@ if(!isset($email) || $role!="student"){
 <!--                BILL PAYMENT INSTRUCTIONS-->
                 <div class="card card-header-actions">
                     <div class="card-header container-fluid">
-                        <!--                            <div class="row">-->
-                        <!--                                <div class="col-md-10">-->
-                        <!--                                    General Instructions-->
-                        <!--                                </div>-->
-                        <!--                                <div class="col-md-10 float-right">-->
-                        <!--                                    <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#billForm">Create Bill</button>-->
-                        <!--                                </div>-->
-                        <!--                            </div>-->
                         <div class="row">
                             <div class="col-md-10">
                                 <h3>General Instructions</h3>
@@ -225,19 +217,6 @@ if(!isset($email) || $role!="student"){
 
                                 <div class="card-body">
                                     <form method = "POST" action="student-bill-post.php">
-<!--                                        <div class="form-group">-->
-<!--                                            <label for="student">Choose Student</label>-->
-<!--                                            <select class="form-control" id="student">-->
-<!--                                                --><?php
-//                                                $sql = "SELECT * from student where email = '$email'";
-//                                                $sql_results = mysqli_query($conn, $sql);
-//                                                $row = mysqli_fetch_assoc($sql_results);
-//                                                //echo "<option>".$sql_results['f_name']."</option>";
-//                                                ?>
-<!--                                                <option>--><?php //echo $row['f_name']." ".$row['l_name']; ?><!--</option>-->
-<!--                                            </select>-->
-<!--                                        </div>-->
-
                                         <div class="form-group">
                                             <label for="bill">Choose Bill</label>
                                             <select class="form-control" id="bill" name="bill">

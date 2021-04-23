@@ -26,36 +26,17 @@ if(isset($_POST['submit'])){
         if(isset($file_name) && !empty($file_name)){
             $location = "img/student/";
             if(move_uploaded_file($temp_name, $location.$final_name)){
-                echo "File moved";
                 $query = "UPDATE student_profile SET picture = '$final_name' WHERE student_id = '$student_id' && email = '$email'";
                 mysqli_query($conn, $query);
-                ?>
-                <script>
-                    window.location.href='student-dashboard.php?success';
-                    //alert('successfully uploaded');
-                </script>
-                <?php
+                header("Location: student-dashboard.php?success");
             }else{
-                echo "Umechema";
-                ?>
-                <!--                    <script>-->
-                <!--                        window.location.href='student-dashboard.php?failed';-->
-                <!--                        //alert('successfully uploaded');-->
-                <!--                    </script>-->
-                <?php
+                header("Location: student-dashboard.php?failed");
             }
         }else{
-            echo "File name error";
+            header("Location: student-dashboard.php?failed");
         }
     }else{
-        echo "Hola";
-        ?>
-
-        <!--            <script>-->
-        <!--                window.location.href='student-dashboard.php?failed';-->
-        <!--                //alert('successfully uploaded');-->
-        <!--            </script>-->
-        <?php
+        header("Location: student-dashboard.php?failed");
     }
 }else{
     echo "Form didnt work";

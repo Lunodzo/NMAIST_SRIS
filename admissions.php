@@ -84,18 +84,7 @@ if(!isset($_SESSION['sess_email']) || $role != "admin"){
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Names</th>
-                                            <th>Programme</th>
-                                            <th>Cohort</th>
-                                            <th>Sex</th>
-                                            <th>Phone</th>
-                                            <th>Actions</th>
-                                        </tr>
-                                    </tfoot>
                                     <tbody>
-
                                         <?php
                                         $sql = "SELECT * FROM student, course 
                                         where student.course_id = course.course_id";
@@ -108,10 +97,10 @@ if(!isset($_SESSION['sess_email']) || $role != "admin"){
                                                 echo "<td>".$row['sex']." </td>";
                                                 echo "<td>".$row['phone']." </td>";
                                                 echo "<td><a href='#' class='d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm'><i
-                                                class='fas fa-list fa-sm text-white-50'></i> View</a>
+                                                class='fas fa-eye fa-sm text-white-50'></i></a>
                                                 
                                                 <a href='#' class='d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm'><i
-                                                class='fas fa-edit fa-sm text-white-50'></i> Edit</a></td>";
+                                                class='fas fa-edit fa-sm text-white-50 d-none d-sm-inline-block'></i></a></td>";
                                                 echo "</tr>";
                                         }
                                     }

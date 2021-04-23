@@ -245,7 +245,7 @@ if(!isset($_SESSION['sess_email']) || $role!="student"){
                                                     <div class="form-group row">
                                                         <div class="col-sm-12 mb-3 mb-sm-0">
                                                             <label for="description">Details</label>
-                                                            <textarea class= "form-control" rows = "5" name="details" placeholder="Any helpful details">
+                                                            <textarea class= "form-control" name="details" placeholder="Any helpful details">
                                                                 </textarea>
                                                         </div>
                                                     </div>
