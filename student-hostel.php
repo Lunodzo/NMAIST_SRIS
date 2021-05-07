@@ -87,17 +87,17 @@ if(!isset($email) || $role!="student"){
                         <?php
                         //COUNT NUMBER OF AVAILABLE ROOMS
                         //HOSTEL A
-                        $hostel_a = "SELECT * from unallocated_hostela";
+                        $hostel_a = "SELECT * from unallocated_hostels WHERE hostel_name = 'Hostel A'";
                         $query = mysqli_query($conn, $hostel_a);
                         $hostela_count = mysqli_num_rows($query);
 
                         //HOSTEL B
-                        $hostel_b = "SELECT * from unallocated_hostelb";
+                        $hostel_b = "SELECT * from unallocated_hostels WHERE hostel_name = 'Hostel B'";
                         $queryb = mysqli_query($conn, $hostel_b);
                         $hostelb_count = mysqli_num_rows($queryb);
 
                         //PhD HOUSE
-                        $phd_house = "SELECT * from unallocated_phd";
+                        $phd_house = "SELECT * from unallocated_hostels WHERE hostel_name = 'PhD Village'";
                         $queryphp = mysqli_query($conn, $phd_house);
                         $phd_count = mysqli_num_rows($queryphp);
                         ?>

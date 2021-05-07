@@ -111,7 +111,7 @@ if(!isset($email) || $role!="student"){
                                     while ($row = mysqli_fetch_assoc($student_results)) {
                                         echo "<tr>";
                                         echo "<td>".$row['document_type']." </td>";
-                                        echo "<td>".$row['document_category']." </td>";
+                                        echo "<td>".$row['document_cat']." </td>";
                                         echo "<td>".$row['document_type']." </td>";
                                         echo "<td> <span class='badge badge-success'>Uploaded</span></td>";
                                         echo "<td><a href='documents/$row[file]' target='_blank'><i class='fas fa-eye fa-sm'></i></a>&nbsp&nbsp";

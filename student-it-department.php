@@ -60,7 +60,7 @@ if(!isset($_SESSION['sess_email']) || $role!="student"){
 <!--                Table-->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">My IT Information</h6>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -88,7 +88,7 @@ if(!isset($_SESSION['sess_email']) || $role!="student"){
                                     echo "<td>".$results['student_id']." </td>";
                                     ?>
 
-                                    <td><span class="badge badge-warning">Pendind</span></td>
+                                    <td><span class="badge badge-warning">Pending</span></td>
                                     <td><span class="badge badge-success">Created</span></td>
                                     <td><span class="badge badge-warning">Pending</span></td>
                                 </tr>

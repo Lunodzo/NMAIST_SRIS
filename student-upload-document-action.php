@@ -30,17 +30,17 @@ if(isset($_POST['submit'])){
                     echo "Uploaded";
                     $sql="INSERT INTO student_document(student_id,document_type_id,file) VALUES('$student_id','$doc_type','$final_file')";
                     mysqli_query($conn, $sql);
+                    header('Location: ' . $_SERVER['HTTP_REFERER']);
+                    //header("Location: http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
                     ?>
                     <script>
-                        window.location.href='student-upload-document.php?success';
-                        //alert('successfully uploaded');
+                        //window.location.href='student-upload-document.php?success';
                     </script>
                     <?php
 
                 }else{
                     ?>
                     <script>
-                        //alert('Failed');
                         window.location.href='student-upload-document.php?failed';
                     </script>
                     <?php

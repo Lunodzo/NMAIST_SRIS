@@ -54,10 +54,10 @@ if(!isset($email) || $role!="student"){
 <!--                        Card tab titles-->
                         <ul class="nav nav-tabs card-header-tabs" id="cardTab" role="tablist">
                             <li class="nav-item">
-                                <a <?php if(isset($_SESSION['basic_next'])){ echo 'class="nav-link disabled"';  }else{ echo 'class="nav-link active"';} ?> id="basic-tab" href="#basic" data-toggle="tab" role="tab" aria-controls="basic" aria-selected="true">Basic Info</a>
+                                <a class="nav-link active" id="basic-tab" href="#basic" data-toggle="tab" role="tab" aria-controls="basic" aria-selected="true">Basic Info</a>
                             </li>
                             <li class="nav-item">
-                                <a <?php if(isset($_SESSION['basic_next'])){echo 'class="nav-link active"';  }else{ echo 'class="nav-link disabled"';  } ?> id="document-tab" href="#document" data-toggle="tab" role="tab" aria-controls="document" aria-selected="true">Documents</a>
+                                <a class="nav-link" id="document-tab" href="#document" data-toggle="tab" role="tab" aria-controls="document" aria-selected="true">Documents</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" id="payments-tab" href="#payments" data-toggle="tab" role="tab" aria-controls="payments" aria-selected="true">Payments</a>
@@ -112,12 +112,6 @@ if(!isset($email) || $role!="student"){
                                     </div>
                                     <button class="btn btn-primary btn-sm" name="submit" type="submit">Next</button>
                                 </form>
-                                <?php 
-                                if(isset($_POST['submit'])){
-
-                                }
-                                ?>
-
                             </div>
                             <div class="tab-pane fade" id="document" role="tabpanel" aria-labelledby="document-tab">
                                 <h5 class="card-title">Documents</h5>
@@ -126,7 +120,6 @@ if(!isset($email) || $role!="student"){
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
                                         <tr>
-                                            <th>Document Category</th>
                                             <th>Document Type</th>
                                             <th>Status</th>
                                             <th>Actions</th>
@@ -134,22 +127,26 @@ if(!isset($email) || $role!="student"){
                                         </thead>
                                         <tbody>
                                         <?php
-//                                        $sql = "SELECT * FROM document_category, document_type, student_document, student
-//                                        where document_category.document_category_id = document_type.document_category_id
-//                                        AND document_type.document_type_id = student_document.document_type_id AND
-//                                              student.student_id = student_document.student_id AND email = '$email'";
-
-                                       //$sql = "SELECT * FROM document_category, document_type, student WHERE NOT EXISTS(SELECT * FROM uploaded_docs WHERE email='$email')";
-                                       $sql = "SELECT * FROM document_category, document_type, student WHERE email='$email' AND 
-                                                              document_category.document_category_id = document_type.document_category_id";
+                                        $student = "SELECT student_id from student where email ='$email'";
+                                        $run = mysqli_query($conn, $student);
+                                        $student_i = mysqli_fetch_assoc($run);
+                                        $student_id = $student_i['student_id'];
+                                        $sql = "SELECT DISTINCT * FROM unsubmitted_docs_view WHERE student_id='$student_id'";
                                         if($student_results = mysqli_query($conn, $sql)){
                                             while ($row = mysqli_fetch_assoc($student_results)) {
                                                 echo "<tr>";
-                                                echo "<td>".$row['document_cat']." </td>";
                                                 echo "<td>".$row['document_type']." </td>";
-                                                echo "<td> <span class='badge badge-danger'>Required</span></td>";
+                                                $doctype = $row['document_type_id'];
+                                                if($doctype ==  19 || $doctype == 20 || $doctype == 24 || $doctype == 27 ||
+                                                    $doctype == 28 || $doctype == 29 || $doctype == 34 || $doctype == 35 ||
+                                                    $doctype == 36){
+                                                    echo "<td><span class='badge badge-danger'>Required</span></td>";
+                                                }else{
+                                                    echo "<td><span class='badge badge-info'>Depends</span></td>";
+                                                }
+
                                                 echo "<td>";
-                                                echo "&nbsp&nbsp&nbsp&nbsp<button class='btn btn-primary btn-sm' data-toggle='modal' data-target='#doc-upload'><i class='fas fa-file-upload fa-sm'></i> Upload</button>";
+                                                echo "&nbsp&nbsp&nbsp&nbsp<button class='btn btn-primary btn-sm' data-toggle='modal' data-target='#doc-upload'><i class='fas fa-upload fa-sm'></i> Upload</button>";
                                                 echo "</td>";
                                                 echo "</tr>";
                                             }
@@ -284,6 +281,7 @@ if(!isset($email) || $role!="student"){
                                                 ?>
                                                 </tbody>
                                             </table>
+                                            <button class="btn btn-primary btn-sm" >Next</button>
                                         </div>
                                     </div>
                                 </div>

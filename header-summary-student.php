@@ -34,7 +34,17 @@
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                             Pending Documents</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">102</div>
+<!--                        Count document that are not uploaded-->
+                        <?php
+                        $student = "SELECT student_id from student where email ='$email'";
+                        $run = mysqli_query($conn, $student);
+                        $student_i = mysqli_fetch_assoc($run);
+                        $student_id = $student_i['student_id'];
+                        $sql = "SELECT DISTINCT * FROM unsubmitted_docs_view WHERE student_id='$student_id'";
+                        $query = mysqli_query($conn, $sql);
+                        $count_two = mysqli_num_rows($query);
+                        ?>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $count_two;  ?></div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-file fa-2x text-gray-300"></i>
@@ -54,7 +64,12 @@
                         </div>
                         <div class="row no-gutters align-items-center">
                             <div class="col-auto">
-                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">12</div>
+                                <?php
+                                $sql = "SELECT * FROM student_service where email = '$email'";
+                                $query = mysqli_query($conn, $sql);
+                                $count = mysqli_num_rows($query);
+                                ?>
+                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?php echo $count;  ?></div>
                             </div>
                         </div>
                     </div>
@@ -74,7 +89,12 @@
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                             Dean's Appointment</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                        <?php
+                        $sql = "SELECT * FROM dean_appointment where email = '$email' AND status = 'approved'";
+                        $query = mysqli_query($conn, $sql);
+                        $count = mysqli_num_rows($query);
+                        ?>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $count;  ?></div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-user-clock fa-2x text-gray-300"></i>
