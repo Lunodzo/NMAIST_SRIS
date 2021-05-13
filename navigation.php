@@ -71,7 +71,7 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Accommodations:</h6>
-                        <a class="collapse-item" href="#">Allocate Rooms</a>
+                        <a class="collapse-item" href="welfare-allocate-hostel.php">Allocate Rooms</a>
                         <a class="collapse-item" href="hostel-status.php">Check Hostel status</a>
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">Health Insurance</h6>

@@ -41,7 +41,13 @@ if(!isset($_SESSION['sess_email']) || $role != "admin"){
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <?php require 'navigation-admissions.php';?>
+        <?php
+        if($role == "admission"){
+            require 'navigation-admissions.php';
+        }else{
+            require 'navigation.php';
+        }
+        ?>
         <?php require 'connection.php';?>
         <!-- End of Sidebar -->
 
