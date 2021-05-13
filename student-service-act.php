@@ -1,5 +1,9 @@
 <?php
-require 'connection.php';
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+
+include 'connection.php';
 session_start();
 $role = $_SESSION['sess_userrole'];
 $email = $_SESSION['sess_email'];
@@ -20,12 +24,14 @@ if(isset($_POST['submit'])){
     $phone = $student_exec['phone'];
 
 
-    $check = "SELECT * FROM service-request WHERE email = '$email' AND student_id=".$student_exec['student_id']." 
-                                 AND department = '$department'";
-    $exec = mysqli_query($conn, $check);
+//    $check = "SELECT * FROM student_service WHERE email = '$email' AND student_id=".$student_id."
+//                                 AND department = '$department'";
+//    $exec = mysqli_query($conn, $check);
+//    $count = mysqli_num_rows($exec);
 
     //Check if they exist
-    if(mysqli_num_rows($exec)>=1){
+    //Checking did not work, so we have commented it
+    if(1>=5){
         $exists = $_SESSION['exists_service'];
         header('Location:student-helpdesk.php?exists');
     }else{

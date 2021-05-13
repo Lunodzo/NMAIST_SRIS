@@ -1,4 +1,8 @@
 <?php
+//PAGE NOT WORKING
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 require 'connection.php';
 session_start();
 $role = $_SESSION['sess_userrole'];
@@ -8,9 +12,12 @@ if(!isset($email) || $role!="student"){
 }
 
 if(isset($_POST['submit'])){
-    $reg = mysqli_real_escape_string($conn, $_POST['reg-no']);
-    $phone = mysqli_real_escape_string($conn, $_POST['phone']);
-    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $student_query = "SELECT * FROM student WHERE email = '$email'";
+    $student_run = mysqli_query($conn, $student_query);
+    $student_exec = mysqli_fetch_assoc($student_run);
+
+    $reg = $student_exec['student_id'];
+    $phone = $student_exec['phone'];
     $nature = mysqli_real_escape_string($conn,$_POST['nature']);
     $hostel = mysqli_real_escape_string($conn,$_POST['hostel']);
     $details = mysqli_real_escape_string($conn, $_POST['details']);
@@ -20,20 +27,23 @@ if(isset($_POST['submit'])){
     $exec = mysqli_query($conn, $check);
 
     //Check if they exist
-    if(mysqli_num_rows($exec)>=1){
+    if(1>=5){
         $exists = $_SESSION['exists'];
         header('Location:student-helpdesk.php?exists');
     }else{
-        $sql = "INSERT INTO `dean_appointment` (`student_id`, `service_nature`, `details`, `date_submited`, `phone`, `email`) 
-                VALUES ('$reg', '$nature', '$details', current_timestamp(), '$phone', '$email')";
+        $sql = "INSERT INTO `dean_appointment` (`id`, `student_id`, `service_nature`, `details`, `date_submited`, 
+                                `phone`, `email`, `dean_instruction`, `meeting_date`, `meeting_location`, `status`) 
+                                VALUES (NULL, '$reg', '$nature', '$details', current_timestamp(), '$phone', '$email', 
+                                        NULL, NULL, NULL, 'pending')";
 
         if (mysqli_query($conn, $sql)) {
             $success = $_SESSION['success'];
             header('Location:student-helpdesk.php?success');
             mysqli_close($conn);
         }else{
-            $failed = $_SESSION['failed'];
-            header('Location:student-helpdesk.php?failed');
+            echo "Tumekwama";
+            //$failed = $_SESSION['failed'];
+            //header('Location:student-helpdesk.php?failed');
         }
     }
 }

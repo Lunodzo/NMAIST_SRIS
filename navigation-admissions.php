@@ -63,18 +63,18 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Accommodations:</h6>
-                <a class="collapse-item" href="#">Check Hostel status</a>
+                <a class="collapse-item" href="hostel-status.php">Check Hostel status</a>
                 <div class="collapse-divider"></div>
             </div>
         </div>
     </li>
 
     <!-- SITE ADMINISTRATION -->
-    <li class="nav-item">
-        <a class="nav-link" href="system-administration.php">
-            <i class="fas fa-spinner fa-gear"></i>
-            <span>System Administration</span></a>
-    </li>
+<!--    <li class="nav-item">-->
+<!--        <a class="nav-link" href="system-administration.php">-->
+<!--            <i class="fas fa-spinner fa-gear"></i>-->
+<!--            <span>System Administration</span></a>-->
+<!--    </li>-->
 
 
 

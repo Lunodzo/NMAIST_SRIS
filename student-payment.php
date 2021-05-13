@@ -105,7 +105,7 @@ if(!isset($email) || $role!="student"){
 
                                 <tbody>
                                 <?php
-                                $sql = "SELECT * FROM `student_payment_view` where email = '$email' && status='paid'";
+                                $sql = "SELECT * FROM `student_bill_view` where email = '$email' && status='paid'";
                                 if ($sql_results = mysqli_query($conn, $sql)){
                                     while($row = mysqli_fetch_assoc($sql_results)){
                                         echo "<tr>";

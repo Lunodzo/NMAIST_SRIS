@@ -1,9 +1,10 @@
 <?php
 session_start();
 $role = $_SESSION['sess_userrole'];
-$email = $_SESSION['sess_email'];
-if(!isset($_SESSION['sess_email']) || $role!="student"){
-    header('Location: index.php?err=2');
+if(!isset($_SESSION['sess_email']) || $role != "admin"){
+    if(!isset($_SESSION['sess_email']) || $role != "admission"){
+        header('Location: index.php?err=2');
+    }
 }
 ?>
 
@@ -18,7 +19,7 @@ if(!isset($_SESSION['sess_email']) || $role!="student"){
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SRIS - IT</title>
+    <title>SRIS - Hostel Status</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -31,6 +32,7 @@ if(!isset($_SESSION['sess_email']) || $role!="student"){
 
     <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
 </head>
 
 <body id="page-top">
@@ -39,7 +41,13 @@ if(!isset($_SESSION['sess_email']) || $role!="student"){
 <div id="wrapper">
 
     <!-- Sidebar -->
-    <?php include 'navigation-student.php'; ?>
+    <?php
+    if($role == "admission"){
+        require 'navigation-admissions.php';
+    }else{
+        require 'navigation.php';
+    }
+    ?>
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
@@ -54,48 +62,48 @@ if(!isset($_SESSION['sess_email']) || $role!="student"){
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
-                <!-- Page Heading -->
-                <h1 class="h3 mb-4 text-gray-800">IT Related Details</h1>
 
-<!--                Table-->
+                <!-- Page Heading -->
+                <h1 class="h3 mb-4 text-gray-800">Hostel Status</h1>
+
+                <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">My IT Information</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Hostel Status</h6>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>ID</th>
-                                    <th>WiFi Account</th>
-                                    <th>SRIS</th>
-                                    <th>Other</th>
+                                    <th>Hostel Name</th>
+                                    <th>Room</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <?php
-                                $sql = "SELECT * FROM student WHERE email = '$email'";
-                                $query = mysqli_query($conn, $sql);
-                                $results = mysqli_fetch_assoc($query);
+                                $sql = "SELECT room_id, hostel.hostel_id, hostel_name, room_name, status from hostel, room where hostel.hostel_id = room.hostel_id";
+
+                                if($student_results = mysqli_query($conn, $sql)){
+                                    while ($row = mysqli_fetch_assoc($student_results)) {
+                                        $room = $row['room_id'];
+                                        echo "<tr>";
+                                        echo "<td>".$row['hostel_name']."</td>";
+                                        echo "<td>".$row['room_name']." </td>";
+                                        echo "<td>".$row['status']." </td>";
+                                        echo "<td><a class='btn btn-success btn-sm btn-block' href='hostel-status-action.php?room=".$row['room_id']."'> Update</td>";
+                                        echo "</tr>";
+                                    }
+                                }
                                 ?>
-                                <tr>
-                                    <?php
-                                    echo "<td>".$results['f_name']." </td>";
-                                    echo "<td>".$results['email']." </td>";
-                                    echo "<td>".$results['student_id']." </td>";
-                                    ?>
-                                    <td><span class="badge badge-warning">Pending</span></td>
-                                    <td><span class="badge badge-success">Created</span></td>
-                                    <td><span class="badge badge-warning">Pending</span></td>
-                                </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
+
             </div>
             <!-- /.container-fluid -->
 
@@ -120,6 +128,7 @@ if(!isset($_SESSION['sess_email']) || $role!="student"){
 <!-- Logout Modal-->
 <?php include 'logout-modal.php'; ?>
 
+<!-- Bootstrap core JavaScript-->
 <!-- Bootstrap core JavaScript-->
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

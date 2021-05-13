@@ -18,7 +18,7 @@ if(!isset($_SESSION['sess_email']) || $role != "admin"){
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SRIS - Blank</title>
+    <title>SRIS - Accounts Department</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -41,12 +41,11 @@ if(!isset($_SESSION['sess_email']) || $role != "admin"){
 
         <!-- Sidebar -->
         <?php
-            if(isset($_SESSION['sess_email']) && $role == "admin"){
-                include 'navigation.php';
-            }else if(isset($_SESSION['sess_email']) && $role == "accountant"){
-                include 'navigation-accounts.php';
-            }
-            require 'connection.php';
+        if($role == "admission"){
+            require 'navigation-admissions.php';
+        }else{
+            require 'navigation.php';
+        }
         ?>
         <!-- End of Sidebar -->
 

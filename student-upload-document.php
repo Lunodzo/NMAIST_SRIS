@@ -174,7 +174,9 @@ if(!isset($email) || $role!="student"){
                                                         <label>File | </label><label class="text-danger small">&nbspPDF only</label>
                                                         <input class="form-control" name="file" type="file" accept="application/pdf">
                                                     </div>
-                                                    <input class="btn btn-primary btn-sm" type="submit" name="submit" value="submit"></input>
+                                                    <input class="btn btn-primary btn-sm" type="submit" name="submit"
+                                                           value="submit"/>
+                                                    <label class="alert-info">If you get no message, your upload was a success</label>
                                                 </form>
                                             </div>
 

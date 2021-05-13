@@ -72,8 +72,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Accommodations:</h6>
                         <a class="collapse-item" href="#">Allocate Rooms</a>
-                        <a class="collapse-item" href="#">Check Hostel status</a>
-                        <a class="collapse-item" href="#">Another</a>
+                        <a class="collapse-item" href="hostel-status.php">Check Hostel status</a>
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">Health Insurance</h6>
                         <a class="collapse-item" href="#">Registered</a>

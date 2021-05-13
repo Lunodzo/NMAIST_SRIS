@@ -118,7 +118,7 @@ if(!isset($_SESSION['sess_email']) || $role!="student"){
 
                                             <!-- Card Body -->
                                             <div class="card-body">
-                                                <form class="user" method="POST" action="student-service-action.php">
+                                                <form class="user" method="POST" action="student-service-act.php">
                                                     <div class="form-group row">
                                                         <div class="col-sm-6 mb-3 mb-sm-0">
                                                             <label for="reg-no">Registration Number</label>
@@ -206,9 +206,9 @@ if(!isset($_SESSION['sess_email']) || $role!="student"){
                                                                    placeholder="<?php echo $result['student_id']; ?>" readonly>
                                                         </div>
                                                         <div class="col-sm-6 mb-3 mb-sm-0">
-                                                            <label for="phone-no">Phone Number</label>
+                                                            <label for="phone">Phone Number</label>
                                                             <input type="tel" class="form-control" id="phone-no" name="phone"
-                                                                   placeholder="<?php echo $result['phone']; ?>">
+                                                                   placeholder="<?php echo $result['phone']; ?>" readonly>
                                                         </div>
                                                     </div>
 
@@ -216,13 +216,13 @@ if(!isset($_SESSION['sess_email']) || $role!="student"){
                                                         <div class="col-sm-12 mb-3 mb-sm-0">
                                                             <label for="email">Email</label>
                                                             <input type="email" class="form-control " id="email"
-                                                                   placeholder="<?php echo $result['email']; ?>" name="email">
+                                                                   placeholder="<?php echo $result['email']; ?>" name="email" readonly>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group row">
                                                         <div class="col-sm-6">
-                                                            <label for="department">Nature of Service</label>
+                                                            <label for="nature">Nature of Service</label>
                                                             <select class = "selectpicker form-control" id = "department" name="nature">
                                                                 <option>Consultation</option>
                                                                 <option>Counselling</option>
@@ -232,7 +232,7 @@ if(!isset($_SESSION['sess_email']) || $role!="student"){
                                                             </select>
                                                         </div>
                                                         <div class="col-sm-6">
-                                                            <label for="department">Hostel</label>
+                                                            <label for="hostel">Hostel</label>
                                                             <select class = "selectpicker form-control" id = "hostel" name="hostel">
                                                                 <option>Hostel A</option>
                                                                 <option>Hostel B</option>
@@ -244,7 +244,7 @@ if(!isset($_SESSION['sess_email']) || $role!="student"){
 
                                                     <div class="form-group row">
                                                         <div class="col-sm-12 mb-3 mb-sm-0">
-                                                            <label for="description">Details</label>
+                                                            <label for="details">Details</label>
                                                             <textarea class= "form-control" name="details" placeholder="Any helpful details">
                                                                 </textarea>
                                                         </div>
@@ -252,7 +252,7 @@ if(!isset($_SESSION['sess_email']) || $role!="student"){
 
                                                     <div class="row">
                                                         <div class="col-sm-3">
-                                                            <input type="submit" name="submit" id="submit" class="btn btn-primary btn-block"/>
+                                                            <input type="submit" name="submit" class="btn btn-primary btn-block"/>
                                                         </div>
                                                     </div>
                                                 </form>

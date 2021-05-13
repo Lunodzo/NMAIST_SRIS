@@ -1,6 +1,7 @@
 <?php
 session_start();
 $role = $_SESSION['sess_userrole'];
+$email = $_SESSION['sess_email'];
 if(!isset($_SESSION['sess_email']) || $role != "admin"){
     if(!isset($_SESSION['sess_email']) || $role != "admission"){
         header('Location: index.php?err=2');
@@ -40,7 +41,13 @@ if(!isset($_SESSION['sess_email']) || $role != "admin"){
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <?php require 'navigation.php';?>
+        <?php
+        if($role == "admission"){
+            require 'navigation-admissions.php';
+        }else{
+            require 'navigation.php';
+        }
+        ?>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -73,29 +80,42 @@ if(!isset($_SESSION['sess_email']) || $role != "admin"){
                                         <tr>
                                             <th>Names</th>
                                             <th>Programme</th>
-                                            <th>Sex</th>
+                                            <th>Gender</th>
                                             <th>Sponsor</th>
                                             <th>Documents</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Names</th>
-                                            <th>Programme</th>
-                                            <th>Sex</th>
-                                            <th>Sponsor</th>
-                                            <th>Documents</th>
-                                        </tr>
-                                    </tfoot>
                                     <tbody>
-                                        <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>61</td>
-                                            <td>2011/04/25</td>
-                                        </tr>
-                                        
+                                    <?php
+                                    $sql = "SELECT student_id, f_name, l_name, course_short_form, name, phone, sex FROM student, course, sponsor 
+                                        where student.course_id = course.course_id AND student.sponsor_id = sponsor.sponsor_id";
+
+                                    if($student_results = mysqli_query($conn, $sql)){
+                                        while ($row = mysqli_fetch_assoc($student_results)) {
+                                            $id = $row['student_id'];
+                                            echo "<tr>";
+                                            echo "<td>".$row['f_name']."&nbsp".$row['l_name']." </td>";
+                                            echo "<td>".$row['course_short_form']." </td>";
+                                            echo "<td>".$row['sex']." </td>";
+                                            echo "<td>".$row['name']." </td>";
+
+                                            $sql_one = "SELECT * FROM `uploaded_docs` where student_id = '$id'";
+                                            $query = mysqli_query($conn, $sql_one);
+                                            $count = mysqli_num_rows($query);
+                                            //echo $count;
+
+                                            if($count>=1){
+                                                echo "<td><badge class='alert-primary'>Uploaded</badge> </td>";
+                                            }else{
+                                                echo "<td><badge class='alert-primary'>Not Uploaded</badge> </td>";
+                                            }
+                                            echo "<td><a class='btn btn-success btn-sm btn-block' href='student-document-list.php?id=".$row['student_id']."'> View</td>";
+                                            echo "</tr>";
+                                        }
+                                    }
+
+                                    ?>
                                     </tbody>
                                 </table>
                             </div>

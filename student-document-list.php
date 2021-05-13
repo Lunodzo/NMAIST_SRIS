@@ -2,8 +2,10 @@
 session_start();
 $role = $_SESSION['sess_userrole'];
 $email = $_SESSION['sess_email'];
-if(!isset($_SESSION['sess_email']) || $role!="student"){
-    header('Location: index.php?err=2');
+if(!isset($_SESSION['sess_email']) || $role != "admin"){
+    if(!isset($_SESSION['sess_email']) || $role != "admission"){
+        header('Location: index.php?err=2');
+    }
 }
 ?>
 
@@ -18,7 +20,7 @@ if(!isset($_SESSION['sess_email']) || $role!="student"){
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SRIS - IT</title>
+    <title>SRIS - Documents list</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -31,6 +33,7 @@ if(!isset($_SESSION['sess_email']) || $role!="student"){
 
     <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
 </head>
 
 <body id="page-top">
@@ -39,7 +42,13 @@ if(!isset($_SESSION['sess_email']) || $role!="student"){
 <div id="wrapper">
 
     <!-- Sidebar -->
-    <?php include 'navigation-student.php'; ?>
+    <?php
+    if($role == "admission"){
+        require 'navigation-admissions.php';
+    }else{
+        require 'navigation.php';
+    }
+    ?>
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
@@ -54,48 +63,68 @@ if(!isset($_SESSION['sess_email']) || $role!="student"){
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
-                <!-- Page Heading -->
-                <h1 class="h3 mb-4 text-gray-800">IT Related Details</h1>
 
-<!--                Table-->
+                <!-- Page Heading -->
+                <h1 class="h3 mb-4 text-gray-800">Student's Documents List</h1>
+
+                <!-- Student Bills (Individual) -->
                 <div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">My IT Information</h6>
+                    <div class="card-header py-6">
+                        <div class="row">
+                            <div class="col-md-10 m-0 font-weight-bold text-primary">
+                                <h4>Document List</h4>
+                                <div class="font-weight-bold text-success">
+                                    <?php
+                                    if(isset($_GET['success'])){
+                                        $_SESSION['message'] = 'Your bill has been created';
+                                        $message = $_SESSION['message'];
+                                        echo $message;
+                                    }
+                                    ?>
+                                </div>
+                            </div>
+                            <div class="col-md-2 m-0 float-right">
+                                <button class="btn btn-primary btn-sm float-right" data-toggle="modal" data-target="#billForm">Create Bill</button>
+                            </div>
+                        </div>
                     </div>
+
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>ID</th>
-                                    <th>WiFi Account</th>
-                                    <th>SRIS</th>
-                                    <th>Other</th>
+                                    <th>Document</th>
+                                    <th>File Name</th>
+                                    <th>Action</th>
                                 </tr>
                                 </thead>
+
                                 <tbody>
                                 <?php
-                                $sql = "SELECT * FROM student WHERE email = '$email'";
-                                $query = mysqli_query($conn, $sql);
-                                $results = mysqli_fetch_assoc($query);
+                                if(isset($_GET['id'])){
+                                    $student_id = $_GET['id'];
+                                }
+                                $sql = "select file, email, student_document.student_id, document_type from student, student_document, 
+                                                              document_type WHERE student.student_id = student_document.student_id AND 
+                                                                                  document_type.document_type_id = student_document.document_type_id
+                                                                                  AND student_document.student_id = '$student_id'";
+                                if ($sql_results = mysqli_query($conn, $sql)){
+                                    while($row = mysqli_fetch_assoc($sql_results)){
+                                        echo "<tr>";
+                                        echo "<td>".$row['document_type']." </td>";
+                                        echo "<td>".$row['file']."</td>";
+                                        echo "<td><button class='btn btn-success btn-sm btn-block'> Verify </button></td>";
+                                        echo "</tr>";
+                                    }
+                                }
                                 ?>
-                                <tr>
-                                    <?php
-                                    echo "<td>".$results['f_name']." </td>";
-                                    echo "<td>".$results['email']." </td>";
-                                    echo "<td>".$results['student_id']." </td>";
-                                    ?>
-                                    <td><span class="badge badge-warning">Pending</span></td>
-                                    <td><span class="badge badge-success">Created</span></td>
-                                    <td><span class="badge badge-warning">Pending</span></td>
-                                </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
+
             </div>
             <!-- /.container-fluid -->
 
