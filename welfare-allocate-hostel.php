@@ -1,6 +1,7 @@
 <?php
 session_start();
 $role = $_SESSION['sess_userrole'];
+$email = $_SESSION['sess_email'];
 if(!isset($_SESSION['sess_email']) || $role != "admin"){
     if(!isset($_SESSION['sess_email']) || $role != "welfare"){
         header('Location: index.php?err=2');
@@ -77,7 +78,7 @@ if(!isset($_SESSION['sess_email']) || $role != "admin"){
                                 <tr>
                                     <th>Student Names</th>
                                     <th>Gender</th>
-                                    <th>Date Submitted</th>
+                                    <th>Date Request Submitted</th>
                                     <th>Special Need</th>
                                     <th>Action</th>
                                 </tr>
@@ -108,7 +109,6 @@ if(!isset($_SESSION['sess_email']) || $role != "admin"){
                 <!--                        ROOM ALLOCATION FORM MODEL-->
                 <div id="roomForm" class="modal fade" role="dialog">
                     <div class="modal-dialog">
-
                         <!-- Modal content-->
                         <div class="modal-content">
                             <div class="modal-header">
@@ -122,7 +122,10 @@ if(!isset($_SESSION['sess_email']) || $role != "admin"){
 
                             </div>
                             <?php
-                            $sql = "SELECT * from student JOIN room_requests ON student.student_id = room_requests.student_id";
+                            //$sql = "SELECT * from student JOIN room_requests ON student.student_id = room_requests.student_id";
+                            $sql = "SELECT room_requests.student_id, f_name, l_name, sex, date_requested, special_need 
+                                    FROM room_requests INNER JOIN student ON student.student_id = room_requests.student_id 
+                                        LEFT JOIN room_allocation ON room_allocation.request_id = room_requests.request_id";
                             $query = mysqli_query($conn, $sql);
                             $row = mysqli_fetch_assoc($query);
                             $request = $row['request_id'];

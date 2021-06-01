@@ -23,7 +23,7 @@ if(isset($_POST['submit'])){
     }else{
         $query = "INSERT INTO `room_requests` (`request_id`, `student_id`, `date_requested`, `special_need`) 
                 VALUES (NULL, '$student_id', current_timestamp(), '$special')";
-        mysqli_query($conn, $query);
+        $results = mysqli_query($conn, $query);
         $success = $_SESSION['success'];
         header("Location: student-hostel.php?success");
     }

@@ -19,7 +19,7 @@ if(!isset($email) || $role!="student"){
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SRIS - NHIF Documents</title>
+    <title>SRIS - Health Insurance Documents</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -38,7 +38,13 @@ if(!isset($email) || $role!="student"){
 <div id="wrapper">
 
     <!-- Sidebar -->
-    <?php include 'navigation-student.php'; ?>
+    <?php
+    if($role == "student"){
+        include 'navigation-student.php';
+    }else{
+        require 'navigation.php';
+    }
+    ?>
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
@@ -55,7 +61,7 @@ if(!isset($email) || $role!="student"){
             <div class="container-fluid">
 
                 <!-- Page Heading -->
-                <h1 class="h3 mb-4 text-gray-800">NHIF Documents</h1>
+                <h1 class="h3 mb-4 text-gray-800">Health Insurance Documents</h1>
 
                 <!-- NHIF DOCUMENTS -->
                 <div class="card shadow mb-4 card-header-actions">

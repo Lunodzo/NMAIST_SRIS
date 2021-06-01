@@ -43,6 +43,8 @@ if(!isset($_SESSION['sess_email']) || $role != "admin"){
         <?php
         if($role == "admission"){
             require 'navigation-admissions.php';
+        }else if($role == "accounts"){
+            require 'navigation-accounts.php';
         }else{
             require 'navigation.php';
         }

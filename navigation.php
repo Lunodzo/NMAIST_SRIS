@@ -75,7 +75,7 @@
                         <a class="collapse-item" href="hostel-status.php">Check Hostel status</a>
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">Health Insurance</h6>
-                        <a class="collapse-item" href="#">Registered</a>
+                        <a class="collapse-item" href="student-insurance.php">Registered</a>
                         <a class="collapse-item" href="#">Pending</a>
 
                         <div class="collapse-divider"></div>
@@ -93,25 +93,25 @@
             
 
             <!-- BILLING -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-file-invoice-dollar"></i>
-                    <span>Billing</span>
-                </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="#">Bills</a>
-                        <a class="collapse-item" href="#">Payments</a>
-                    </div>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+               aria-expanded="true" aria-controls="collapsePages">
+                <i class="fas fa-fw fa-file-invoice-dollar"></i>
+                <span>Billing</span>
+            </a>
+            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="student-bills.php">Bills</a>
+                    <a class="collapse-item" href="student-payment.php">Payments</a>
                 </div>
-            </li>
+            </div>
+        </li>
 
 
             <!-- IT DEPARTMENT -->
 
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="it-department.php">
                     <i class="fas fa-fw fa-laptop-medical"></i>
                     <span>IT Department</span></a>
             </li>

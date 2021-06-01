@@ -36,7 +36,8 @@ if(isset($_POST['submit'])){
                                 VALUES (NULL, '$reg', '$nature', '$details', current_timestamp(), '$phone', '$email', 
                                         NULL, NULL, NULL, 'pending')";
 
-        if (mysqli_query($conn, $sql)) {
+        $results = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+        if ($results) {
             $success = $_SESSION['success'];
             header('Location:student-helpdesk.php?success');
             mysqli_close($conn);

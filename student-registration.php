@@ -66,17 +66,17 @@ if(!isset($_SESSION['sess_email']) || $role != "admin"){
                         <div class="form-group row">
                             <div class="col-sm-4 mb-3 mb-sm-0">
                                 <label for="f_name">First Name</label>
-                                <input type="text" class="form-control" id="FirstName"
+                                <input type="text" class="form-control" id="FirstName" name="FirstName"
                                     placeholder="Eve" required="true">
                             </div>
                             <div class="col-sm-4 mb-3 mb-sm-0">
                                 <label for="m_name">Middle Name</label>
-                                <input type="text" class="form-control" id="MiddleName"
+                                <input type="text" class="form-control" id="MiddleName" name="MiddleName"
                                     placeholder="Ibrahim">
                             </div>
                             <div class="col-sm-4">
                                 <label for="l_name">Last Name</label>
-                                <input type="text" class="form-control" id="LastName"
+                                <input type="text" class="form-control" id="LastName" name="LastName"
                                     placeholder="Wilomo" required="true">
                             </div>
                         </div>
@@ -89,8 +89,6 @@ if(!isset($_SESSION['sess_email']) || $role != "admin"){
                                     <option>Male</option>
                                     <option>Female</option>
                                 </select>
-                                <!-- <input type="sex" class="form-control form-control-user"
-                                    id="sex" placeholder="Sex" required="true"> -->
                             </div>
                             <div class="col-sm-4">
                                 <label for="marital-status">Marital Status</label>
@@ -102,7 +100,7 @@ if(!isset($_SESSION['sess_email']) || $role != "admin"){
                             </div>
                             <div class="col-sm-4">
                                 <label for="dob">Date of Birth</label>
-                                <input type="date" class="form-control"
+                                <input type="date" class="form-control" name="dob"
                                     id="date" placeholder="15/03/1880" required="true">
                             </div>
                         </div>
@@ -110,17 +108,17 @@ if(!isset($_SESSION['sess_email']) || $role != "admin"){
                         <div class="form-group row">
                             <div class="col-sm-4">
                                 <label for="reg-no">Registration Number</label>
-                                <input type="text" class="form-control" id="RedNumber"
+                                <input type="text" class="form-control" id="RedNumber" name="RegNumber"
                                     placeholder="M078/T19" required="true">
                             </div>
                             <div class="col-sm-4">
                                 <label for="phone">Phone Number</label>
-                                <input type="text" class="form-control" id="phone"
+                                <input type="text" class="form-control" id="phone" name="phone"
                                     placeholder="+255765268371" required="true">
                             </div>
                             <div class="col-sm-4">
                                 <label for="email">Email Address</label>
-                                <input type="email" class="form-control" id="InputEmail"
+                                <input type="email" class="form-control" id="InputEmail" name="email"
                                 placeholder="wilomoe@nm-aist.ac.tz" required="true">
                             </div>
                             
@@ -129,7 +127,7 @@ if(!isset($_SESSION['sess_email']) || $role != "admin"){
                         <div class="form-group row">
                             <div class="col-sm-4 mb-3 mb-sm-0">
                                 <label for="address">Address</label>
-                                <input type="address" class="form-control"
+                                <input type="address" class="form-control" name="address"
                                     id="address" placeholder="P.O.Box 12, Ilemela - Mwanza" required="true">
                             </div>
                             <div class="col-sm-4">
@@ -329,9 +327,16 @@ if(!isset($_SESSION['sess_email']) || $role != "admin"){
                             </div>
                             <div class="col-sm-4">
                                 <label for="course">Course</label>
-                                <select class = "selectpicker form-control" id = "course" name="corse">
-                                    <!-- FETCH LIST FROM THE DB -->
-                                    <option>WiMC</option>
+                                <select name="course" class="selectpicker form-control" id="course">
+                                    <option value="">Course Short Form</option>
+                                    <?php
+                                    $sql = "SELECT * from course";
+                                    if($sql_results = mysqli_query($conn, $sql)){
+                                        while($row = mysqli_fetch_assoc($sql_results)){
+                                            echo "<option value=".$row['course_id'].">".$row['course_short_form']."</option>";
+                                        }
+                                    }
+                                    ?>
                                 </select>
                             </div>
                         </div>
@@ -340,16 +345,20 @@ if(!isset($_SESSION['sess_email']) || $role != "admin"){
                         <div class="form-group row">
                             <div class="col-sm-4 mb-3 mb-sm-0">
                                 <label for="cohort">Cohort</label>
-                                <input type="number" class="form-control"
+                                <input type="number" class="form-control" name="cohort"
                                     id="cohort" placeholder="1 - 11" required="true">
                             </div>
                             <div class="col-sm-4">
                                 <label for="sponsor">Sponsorship</label>
                                 <select class = "selectpicker form-control" id = "sponsor" name="sponsor">
-                                    <!-- FETCH LIST FROM THE DB -->
-                                    <option>Private</option>
-                                    <option>Project</option>
-                                    <option>Devorced</option>
+                                    <?php
+                                    $sql = "SELECT * from sponsor";
+                                    if($sql_results = mysqli_query($conn, $sql)){
+                                        while($row = mysqli_fetch_assoc($sql_results)){
+                                            echo "<option value=".$row['sponsor_id'].">".$row['name']."</option>";
+                                        }
+                                    }
+                                    ?>
                                 </select>
                             </div>
                             <div class="col-sm-4">
@@ -365,9 +374,7 @@ if(!isset($_SESSION['sess_email']) || $role != "admin"){
 
                         <div class="row">
                             <div class="col-sm-4">
-                                <a type="submit" href="login.html" class="btn btn-primary btn-block">
-                                Register Student
-                                </a> 
+                                <input type="submit" name="submit" value="Register Student" class="btn btn-primary btn-block"/>
                             </div>
                         </div>
                     </form>

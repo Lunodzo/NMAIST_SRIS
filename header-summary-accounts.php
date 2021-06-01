@@ -9,10 +9,16 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                            Total Control No Created</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">562</div>
+                            Total Ctr No Created</div>
+                        <?php
+                        $sql = "SELECT * FROM student_bill";
+                        $query = mysqli_query($conn, $sql);
+                        $count = mysqli_num_rows($query);
+                        ?>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $count;  ?></div>
                     </div>
                     <div class="col-auto">
+
                         <i class="fas fa-users fa-2x text-gray-300"></i>
                     </div>
                 </div>
@@ -28,7 +34,12 @@
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                             Paid Control Numbers</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">102</div>
+                        <?php
+                        $sql = "SELECT * FROM student_bill where status='paid'";
+                        $query = mysqli_query($conn, $sql);
+                        $count = mysqli_num_rows($query);
+                        ?>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $count;  ?></div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-user-check fa-2x text-gray-300"></i>
@@ -48,15 +59,13 @@
                         </div>
                         <div class="row no-gutters align-items-center">
                             <div class="col-auto">
-                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">12</div>
+                                <?php
+                                $sql = "SELECT * FROM student_bill where status='pending'";
+                                $query = mysqli_query($conn, $sql);
+                                $count = mysqli_num_rows($query);
+                                ?>
+                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?php echo $count;  ?></div>
                             </div>
-                            <!-- <div class="col">
-                                <div class="progress progress-sm mr-2">
-                                    <div class="progress-bar bg-info" role="progressbar"
-                                        style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                                        aria-valuemax="100"></div>
-                                </div>
-                            </div> -->
                         </div>
                     </div>
                     <div class="col-auto">
@@ -74,8 +83,13 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                            Expired Control Numbers</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                            Exp Control Numbers</div>
+                        <?php
+                        $sql = "SELECT * FROM student_bill where status='expired'";
+                        $query = mysqli_query($conn, $sql);
+                        $count = mysqli_num_rows($query);
+                        ?>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $count;  ?></div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-user-clock fa-2x text-gray-300"></i>

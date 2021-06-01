@@ -1,3 +1,15 @@
+<?php
+session_start();
+require "connection.php";
+$email = $_SESSION['sess_email'];
+$role = $_SESSION['sess_userrole'];
+if(!isset($_SESSION['sess_email']) || $role != "admin"){
+    if(!isset($_SESSION['sess_email']) || $role != "computer"){
+        header('Location: index.php?err=2');
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

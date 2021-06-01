@@ -2,8 +2,10 @@
 session_start();
 $role = $_SESSION['sess_userrole'];
 if(!isset($_SESSION['sess_email']) || $role != "admin"){
-    if(!isset($_SESSION['sess_email']) || $role != "admission"){
-        header('Location: index.php?err=2');
+    if(!isset($_SESSION['sess_email']) || $role != "admission") {
+        if (!isset($_SESSION['sess_email']) || $role != "welfare") {
+            header('Location: index.php?err=2');
+        }
     }
 }
 ?>
@@ -44,6 +46,8 @@ if(!isset($_SESSION['sess_email']) || $role != "admin"){
     <?php
     if($role == "admission"){
         require 'navigation-admissions.php';
+    }else if($role == "welfare"){
+        require 'navigation-welfare.php';
     }else{
         require 'navigation.php';
     }

@@ -10824,20 +10824,17 @@ a:focus {
 }
 
 .bg-login-image {
-  background: url("img/nm-aist.jpg");
-  background-position: center;
+  background: url("https://images.unsplash.com/photo-1594750852563-5ed8e0421d40?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80") center;
   background-size: cover;
 }
 
 .bg-register-image {
-  background: url("https://source.unsplash.com/Mv9hjnEUHR4/600x800");
-  background-position: center;
+  background: url("https://images.unsplash.com/photo-1594750852563-5ed8e0421d40?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80") center;
   background-size: cover;
 }
 
 .bg-password-image {
-  background: url("https://source.unsplash.com/oWTW-jNGl9I/600x800");
-  background-position: center;
+  background: url("https://images.unsplash.com/photo-1594750852563-5ed8e0421d40?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80") center;
   background-size: cover;
 }
 

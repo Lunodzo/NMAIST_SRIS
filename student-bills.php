@@ -3,10 +3,12 @@ session_start();
 $role = $_SESSION['sess_userrole'];
 $email = $_SESSION['sess_email'];
 if(!isset($email) || $role!="student"){
-    header('Location: index.php?err=2');
+    if (!isset($email) || $role!="admin"){
+        if(!isset($email) || $role!="accountant"){
+            header('Location: index.php?err=2');
+        }
+    }
 }
-
-
 ?>
 
 <!DOCTYPE html>
@@ -42,7 +44,15 @@ if(!isset($email) || $role!="student"){
 <div id="wrapper">
 
     <!-- Sidebar -->
-    <?php include 'navigation-student.php'; ?>
+    <?php
+    if($role == "admission"){
+        require 'navigation-admissions.php';
+    }else if($role == "accountant"){
+        require 'navigation-accounts.php';
+    }else{
+        require 'navigation.php';
+    }
+    ?>
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
@@ -93,6 +103,11 @@ if(!isset($email) || $role!="student"){
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                 <tr>
+                                    <?php
+                                    if($role != "student"){
+                                        echo '<th>Student Name</th>';
+                                    }
+                                    ?>
                                     <th>Bill Name</th>
                                     <th>Control Number</th>
                                     <th>Date Created</th>
@@ -104,10 +119,18 @@ if(!isset($email) || $role!="student"){
 
                                 <tbody>
                                 <?php
-                                $sql = "SELECT * FROM `student_bill_view` where email = '$email' && status='pending'";
+                                if($role == "student"){
+                                    $sql = "SELECT * FROM `student_bill_view` where email = '$email' && status='pending'";
+                                }else{
+                                    $sql = "SELECT * FROM `student_bill_view` where status='pending'";
+                                }
+
                                 if ($sql_results = mysqli_query($conn, $sql)){
                                     while($row = mysqli_fetch_assoc($sql_results)){
                                         echo "<tr>";
+                                        if($role != "student"){
+                                            echo "<td>".$row['f_name']."&nbsp".$row['l_name']." </td>";
+                                        }
                                         echo "<td>".$row['bill_name']." </td>";
                                         echo "<td>".$row['control_no']." </td>";
                                         echo "<td>".$row['date_created']." </td>";

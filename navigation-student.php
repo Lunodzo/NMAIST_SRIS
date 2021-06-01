@@ -82,6 +82,7 @@
 
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">Health Insurance</h6>
+                        <a class="collapse-item" href="student-add-insurance.php">Add Details</a>
                         <a class="collapse-item" href="student-nhif.php">Download NHIF Form</a>
 
                         <div class="collapse-divider"></div>

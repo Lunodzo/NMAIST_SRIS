@@ -16,7 +16,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="admi-dashboard.php">
+        <a class="nav-link" href="welfare-dashboard.php">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
@@ -49,14 +49,6 @@
     </li>
 
 
-    <!-- ACCOUNTS -->
-    <li class="nav-item">
-        <a class="nav-link" href="accounts.php">
-            <i class="fas fa-fw fa-money-check-alt"></i>
-            <span>Accounts</span></a>
-    </li>
-
-
     <!-- WELFARE -->
 
     <li class="nav-item">
@@ -68,11 +60,11 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Accommodations:</h6>
-                <a class="collapse-item" href="#">Allocate Rooms</a>
+                <a class="collapse-item" href="welfare-allocate-hostel.php">Allocate Rooms</a>
                 <a class="collapse-item" href="hostel-status.php">Check Hostel status</a>
                 <div class="collapse-divider"></div>
                 <h6 class="collapse-header">Health Insurance</h6>
-                <a class="collapse-item" href="#">Registered</a>
+                <a class="collapse-item" href="student-insurance.php">Registered</a>
                 <a class="collapse-item" href="#">Pending</a>
 
                 <div class="collapse-divider"></div>
