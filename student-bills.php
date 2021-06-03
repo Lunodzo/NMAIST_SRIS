@@ -49,6 +49,8 @@ if(!isset($email) || $role!="student"){
         require 'navigation-admissions.php';
     }else if($role == "accountant"){
         require 'navigation-accounts.php';
+    }else if($role == "student"){
+        require 'navigation-student.php';
     }else{
         require 'navigation.php';
     }

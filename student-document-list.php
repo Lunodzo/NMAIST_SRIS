@@ -76,7 +76,7 @@ if(!isset($_SESSION['sess_email']) || $role != "admin"){
                                 <div class="font-weight-bold text-success">
                                     <?php
                                     if(isset($_GET['success'])){
-                                        $_SESSION['message'] = 'Your bill has been created';
+                                        $_SESSION['message'] = 'Your document has been upload';
                                         $message = $_SESSION['message'];
                                         echo $message;
                                     }
@@ -84,7 +84,7 @@ if(!isset($_SESSION['sess_email']) || $role != "admin"){
                                 </div>
                             </div>
                             <div class="col-md-2 m-0 float-right">
-                                <button class="btn btn-primary btn-sm float-right" data-toggle="modal" data-target="#billForm">Create Bill</button>
+<!--                                <button class="btn btn-primary btn-sm float-right" data-toggle="modal" data-target="#billForm">Upload</button>-->
                             </div>
                         </div>
                     </div>
