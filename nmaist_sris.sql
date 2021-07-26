@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 03, 2021 at 07:55 PM
+-- Generation Time: Jul 23, 2021 at 01:02 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 
@@ -20,34 +20,19 @@ SET time_zone = "+00:00";
 --
 -- Database: `nmaist_sris`
 --
-CREATE DATABASE IF NOT EXISTS `nmaist_sris` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `nmaist_sris`;
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `academic_year`
 --
--- Creation: Apr 23, 2021 at 09:47 PM
---
 
-DROP TABLE IF EXISTS `academic_year`;
-CREATE TABLE IF NOT EXISTS `academic_year` (
-  `academic_id` int(10) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `academic_year` (
+  `academic_id` int(10) NOT NULL,
   `year` varchar(12) NOT NULL,
-  `detail` varchar(30) NOT NULL DEFAULT 'inactive',
-  PRIMARY KEY (`academic_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4;
+  `detail` varchar(30) NOT NULL DEFAULT 'inactive'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- RELATIONSHIPS FOR TABLE `academic_year`:
---
-
---
--- Truncate table before insert `academic_year`
---
-
-TRUNCATE TABLE `academic_year`;
 --
 -- Dumping data for table `academic_year`
 --
@@ -75,8 +60,7 @@ INSERT INTO `academic_year` (`academic_id`, `year`, `detail`) VALUES
 -- Stand-in structure for view `authentication_view`
 -- (See below for the actual view)
 --
-DROP VIEW IF EXISTS `authentication_view`;
-CREATE TABLE IF NOT EXISTS `authentication_view` (
+CREATE TABLE `authentication_view` (
 `f_name` varchar(30)
 ,`m_name` varchar(20)
 ,`l_name` varchar(20)
@@ -90,25 +74,12 @@ CREATE TABLE IF NOT EXISTS `authentication_view` (
 --
 -- Table structure for table `bill`
 --
--- Creation: Apr 23, 2021 at 09:48 PM
---
 
-DROP TABLE IF EXISTS `bill`;
-CREATE TABLE IF NOT EXISTS `bill` (
-  `bill_id` int(10) NOT NULL AUTO_INCREMENT,
-  `bill_name` varchar(30) NOT NULL,
-  PRIMARY KEY (`bill_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4;
+CREATE TABLE `bill` (
+  `bill_id` int(10) NOT NULL,
+  `bill_name` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- RELATIONSHIPS FOR TABLE `bill`:
---
-
---
--- Truncate table before insert `bill`
---
-
-TRUNCATE TABLE `bill`;
 --
 -- Dumping data for table `bill`
 --
@@ -133,32 +104,16 @@ INSERT INTO `bill` (`bill_id`, `bill_name`) VALUES
 --
 -- Table structure for table `course`
 --
--- Creation: Apr 23, 2021 at 09:49 PM
---
 
-DROP TABLE IF EXISTS `course`;
-CREATE TABLE IF NOT EXISTS `course` (
-  `course_id` int(10) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `course` (
+  `course_id` int(10) NOT NULL,
   `course_short_form` varchar(10) NOT NULL,
   `course_name` varchar(100) NOT NULL,
   `course_desc` varchar(100) NOT NULL,
   `school_id` int(10) NOT NULL,
-  `level` varchar(10) NOT NULL,
-  PRIMARY KEY (`course_id`),
-  KEY `school_id` (`school_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4;
+  `level` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- RELATIONSHIPS FOR TABLE `course`:
---   `school_id`
---       `school` -> `school_id`
---
-
---
--- Truncate table before insert `course`
---
-
-TRUNCATE TABLE `course`;
 --
 -- Dumping data for table `course`
 --
@@ -196,12 +151,9 @@ INSERT INTO `course` (`course_id`, `course_short_form`, `course_name`, `course_d
 --
 -- Table structure for table `dean_appointment`
 --
--- Creation: May 31, 2021 at 01:23 PM
---
 
-DROP TABLE IF EXISTS `dean_appointment`;
-CREATE TABLE IF NOT EXISTS `dean_appointment` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `dean_appointment` (
+  `id` int(10) NOT NULL,
   `student_id` varchar(10) NOT NULL,
   `service_nature` varchar(20) NOT NULL,
   `details` text NOT NULL,
@@ -211,22 +163,9 @@ CREATE TABLE IF NOT EXISTS `dean_appointment` (
   `dean_instruction` varchar(50) DEFAULT NULL,
   `meeting_date` datetime DEFAULT NULL,
   `meeting_location` varchar(20) DEFAULT NULL,
-  `status` varchar(15) NOT NULL DEFAULT 'pending',
-  PRIMARY KEY (`id`),
-  KEY `student_id` (`student_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+  `status` varchar(15) NOT NULL DEFAULT 'pending'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- RELATIONSHIPS FOR TABLE `dean_appointment`:
---   `student_id`
---       `student` -> `student_id`
---
-
---
--- Truncate table before insert `dean_appointment`
---
-
-TRUNCATE TABLE `dean_appointment`;
 --
 -- Dumping data for table `dean_appointment`
 --
@@ -243,25 +182,12 @@ INSERT INTO `dean_appointment` (`id`, `student_id`, `service_nature`, `details`,
 --
 -- Table structure for table `document_category`
 --
--- Creation: Apr 23, 2021 at 09:52 PM
---
 
-DROP TABLE IF EXISTS `document_category`;
-CREATE TABLE IF NOT EXISTS `document_category` (
-  `document_category_id` int(10) NOT NULL AUTO_INCREMENT,
-  `document_cat` varchar(30) NOT NULL,
-  PRIMARY KEY (`document_category_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
+CREATE TABLE `document_category` (
+  `document_category_id` int(10) NOT NULL,
+  `document_cat` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- RELATIONSHIPS FOR TABLE `document_category`:
---
-
---
--- Truncate table before insert `document_category`
---
-
-TRUNCATE TABLE `document_category`;
 --
 -- Dumping data for table `document_category`
 --
@@ -280,29 +206,13 @@ INSERT INTO `document_category` (`document_category_id`, `document_cat`) VALUES
 --
 -- Table structure for table `document_type`
 --
--- Creation: Apr 23, 2021 at 09:53 PM
---
 
-DROP TABLE IF EXISTS `document_type`;
-CREATE TABLE IF NOT EXISTS `document_type` (
-  `document_type_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `document_type` (
+  `document_type_id` int(11) NOT NULL,
   `document_category_id` int(10) NOT NULL,
-  `document_type` varchar(40) NOT NULL,
-  PRIMARY KEY (`document_type_id`),
-  KEY `document_category_id` (`document_category_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4;
+  `document_type` varchar(40) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- RELATIONSHIPS FOR TABLE `document_type`:
---   `document_category_id`
---       `document_category` -> `document_category_id`
---
-
---
--- Truncate table before insert `document_type`
---
-
-TRUNCATE TABLE `document_type`;
 --
 -- Dumping data for table `document_type`
 --
@@ -332,26 +242,13 @@ INSERT INTO `document_type` (`document_type_id`, `document_category_id`, `docume
 --
 -- Table structure for table `hostel`
 --
--- Creation: Apr 23, 2021 at 09:54 PM
---
 
-DROP TABLE IF EXISTS `hostel`;
-CREATE TABLE IF NOT EXISTS `hostel` (
-  `hostel_id` int(10) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `hostel` (
+  `hostel_id` int(10) NOT NULL,
   `hostel_name` varchar(20) NOT NULL,
-  `capacity` int(10) NOT NULL,
-  PRIMARY KEY (`hostel_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+  `capacity` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- RELATIONSHIPS FOR TABLE `hostel`:
---
-
---
--- Truncate table before insert `hostel`
---
-
-TRUNCATE TABLE `hostel`;
 --
 -- Dumping data for table `hostel`
 --
@@ -366,33 +263,14 @@ INSERT INTO `hostel` (`hostel_id`, `hostel_name`, `capacity`) VALUES
 --
 -- Table structure for table `registration_session`
 --
--- Creation: May 31, 2021 at 01:27 PM
---
 
-DROP TABLE IF EXISTS `registration_session`;
-CREATE TABLE IF NOT EXISTS `registration_session` (
-  `reg_session_id` int(10) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `registration_session` (
+  `reg_session_id` int(10) NOT NULL,
   `academic_id` int(10) NOT NULL,
   `semester_id` int(10) NOT NULL,
-  `status` varchar(20) NOT NULL,
-  PRIMARY KEY (`reg_session_id`),
-  KEY `academic_id` (`academic_id`),
-  KEY `semester_id` (`semester_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+  `status` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- RELATIONSHIPS FOR TABLE `registration_session`:
---   `academic_id`
---       `academic_year` -> `academic_id`
---   `semester_id`
---       `semester` -> `semester_id`
---
-
---
--- Truncate table before insert `registration_session`
---
-
-TRUNCATE TABLE `registration_session`;
 --
 -- Dumping data for table `registration_session`
 --
@@ -406,30 +284,14 @@ INSERT INTO `registration_session` (`reg_session_id`, `academic_id`, `semester_i
 --
 -- Table structure for table `room`
 --
--- Creation: Apr 23, 2021 at 09:56 PM
---
 
-DROP TABLE IF EXISTS `room`;
-CREATE TABLE IF NOT EXISTS `room` (
-  `room_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `room` (
+  `room_id` int(11) NOT NULL,
   `room_name` varchar(6) NOT NULL,
   `hostel_id` int(10) NOT NULL,
-  `status` varchar(10) NOT NULL DEFAULT 'Okay',
-  PRIMARY KEY (`room_id`),
-  KEY `hostel_id` (`hostel_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4;
+  `status` varchar(10) NOT NULL DEFAULT 'Okay'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- RELATIONSHIPS FOR TABLE `room`:
---   `hostel_id`
---       `hostel` -> `hostel_id`
---
-
---
--- Truncate table before insert `room`
---
-
-TRUNCATE TABLE `room`;
 --
 -- Dumping data for table `room`
 --
@@ -463,67 +325,29 @@ INSERT INTO `room` (`room_id`, `room_name`, `hostel_id`, `status`) VALUES
 --
 -- Table structure for table `room_allocation`
 --
--- Creation: May 13, 2021 at 12:28 PM
---
 
-DROP TABLE IF EXISTS `room_allocation`;
-CREATE TABLE IF NOT EXISTS `room_allocation` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `room_allocation` (
+  `id` int(10) NOT NULL,
   `room_id` int(11) NOT NULL,
   `request_id` int(10) NOT NULL,
   `reg_session_id` int(10) NOT NULL,
   `date_allocated` timestamp NOT NULL DEFAULT current_timestamp(),
-  `expire_date` date DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `reg_session_id` (`reg_session_id`),
-  KEY `room_id` (`room_id`),
-  KEY `request_id` (`request_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+  `expire_date` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- RELATIONSHIPS FOR TABLE `room_allocation`:
---   `reg_session_id`
---       `registration_session` -> `reg_session_id`
---   `room_id`
---       `room` -> `room_id`
---   `request_id`
---       `room_requests` -> `request_id`
---
-
---
--- Truncate table before insert `room_allocation`
---
-
-TRUNCATE TABLE `room_allocation`;
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `room_requests`
 --
--- Creation: Apr 23, 2021 at 09:58 PM
---
 
-DROP TABLE IF EXISTS `room_requests`;
-CREATE TABLE IF NOT EXISTS `room_requests` (
-  `request_id` int(10) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `room_requests` (
+  `request_id` int(10) NOT NULL,
   `student_id` varchar(10) NOT NULL,
   `date_requested` datetime NOT NULL DEFAULT current_timestamp(),
-  `special_need` varchar(200) NOT NULL,
-  PRIMARY KEY (`request_id`),
-  KEY `student_id` (`student_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+  `special_need` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- RELATIONSHIPS FOR TABLE `room_requests`:
---   `student_id`
---       `student` -> `student_id`
---
-
---
--- Truncate table before insert `room_requests`
---
-
-TRUNCATE TABLE `room_requests`;
 --
 -- Dumping data for table `room_requests`
 --
@@ -536,27 +360,14 @@ INSERT INTO `room_requests` (`request_id`, `student_id`, `date_requested`, `spec
 --
 -- Table structure for table `school`
 --
--- Creation: Apr 23, 2021 at 09:49 PM
---
 
-DROP TABLE IF EXISTS `school`;
-CREATE TABLE IF NOT EXISTS `school` (
-  `school_id` int(10) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `school` (
+  `school_id` int(10) NOT NULL,
   `school_short_form` varchar(10) NOT NULL,
   `school_name` varchar(100) NOT NULL,
-  `school_desc` text NOT NULL,
-  PRIMARY KEY (`school_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+  `school_desc` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- RELATIONSHIPS FOR TABLE `school`:
---
-
---
--- Truncate table before insert `school`
---
-
-TRUNCATE TABLE `school`;
 --
 -- Dumping data for table `school`
 --
@@ -572,26 +383,13 @@ INSERT INTO `school` (`school_id`, `school_short_form`, `school_name`, `school_d
 --
 -- Table structure for table `semester`
 --
--- Creation: Apr 23, 2021 at 09:55 PM
---
 
-DROP TABLE IF EXISTS `semester`;
-CREATE TABLE IF NOT EXISTS `semester` (
-  `semester_id` int(10) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `semester` (
+  `semester_id` int(10) NOT NULL,
   `semester_name` text NOT NULL,
-  `details` text NOT NULL,
-  PRIMARY KEY (`semester_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
+  `details` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- RELATIONSHIPS FOR TABLE `semester`:
---
-
---
--- Truncate table before insert `semester`
---
-
-TRUNCATE TABLE `semester`;
 --
 -- Dumping data for table `semester`
 --
@@ -610,26 +408,13 @@ INSERT INTO `semester` (`semester_id`, `semester_name`, `details`) VALUES
 --
 -- Table structure for table `sponsor`
 --
--- Creation: Apr 23, 2021 at 09:59 PM
---
 
-DROP TABLE IF EXISTS `sponsor`;
-CREATE TABLE IF NOT EXISTS `sponsor` (
-  `sponsor_id` int(10) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `sponsor` (
+  `sponsor_id` int(10) NOT NULL,
   `name` varchar(30) NOT NULL,
-  `details` varchar(20) NOT NULL,
-  PRIMARY KEY (`sponsor_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
+  `details` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- RELATIONSHIPS FOR TABLE `sponsor`:
---
-
---
--- Truncate table before insert `sponsor`
---
-
-TRUNCATE TABLE `sponsor`;
 --
 -- Dumping data for table `sponsor`
 --
@@ -647,31 +432,18 @@ INSERT INTO `sponsor` (`sponsor_id`, `name`, `details`) VALUES
 --
 -- Table structure for table `staff`
 --
--- Creation: Apr 23, 2021 at 10:00 PM
---
 
-DROP TABLE IF EXISTS `staff`;
-CREATE TABLE IF NOT EXISTS `staff` (
-  `staff_id` int(10) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `staff` (
+  `staff_id` int(10) NOT NULL,
   `f_name` varchar(30) NOT NULL,
   `m_name` varchar(20) NOT NULL,
   `l_name` varchar(20) NOT NULL,
   `system_level` varchar(20) NOT NULL DEFAULT 'Admission',
   `email` varchar(30) DEFAULT NULL,
   `phone` int(12) NOT NULL,
-  `password` varchar(80) NOT NULL,
-  PRIMARY KEY (`staff_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+  `password` varchar(80) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- RELATIONSHIPS FOR TABLE `staff`:
---
-
---
--- Truncate table before insert `staff`
---
-
-TRUNCATE TABLE `staff`;
 --
 -- Dumping data for table `staff`
 --
@@ -688,11 +460,8 @@ INSERT INTO `staff` (`staff_id`, `f_name`, `m_name`, `l_name`, `system_level`, `
 --
 -- Table structure for table `student`
 --
--- Creation: May 31, 2021 at 04:05 PM
---
 
-DROP TABLE IF EXISTS `student`;
-CREATE TABLE IF NOT EXISTS `student` (
+CREATE TABLE `student` (
   `student_id` varchar(10) NOT NULL,
   `f_name` varchar(20) NOT NULL,
   `m_name` varchar(20) NOT NULL,
@@ -711,25 +480,9 @@ CREATE TABLE IF NOT EXISTS `student` (
   `system_level` varchar(20) NOT NULL DEFAULT 'student',
   `sponsor_id` int(10) NOT NULL,
   `password` varchar(80) DEFAULT NULL,
-  `status` varchar(15) NOT NULL DEFAULT 'Active',
-  PRIMARY KEY (`student_id`),
-  KEY `course_id` (`course_id`),
-  KEY `sponsor_id` (`sponsor_id`)
+  `status` varchar(15) NOT NULL DEFAULT 'Active'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- RELATIONSHIPS FOR TABLE `student`:
---   `course_id`
---       `course` -> `course_id`
---   `sponsor_id`
---       `sponsor` -> `sponsor_id`
---
-
---
--- Truncate table before insert `student`
---
-
-TRUNCATE TABLE `student`;
 --
 -- Dumping data for table `student`
 --
@@ -746,38 +499,18 @@ INSERT INTO `student` (`student_id`, `f_name`, `m_name`, `l_name`, `sex`, `phone
 --
 -- Table structure for table `student_bill`
 --
--- Creation: Apr 23, 2021 at 09:51 PM
--- Last update: Jun 02, 2021 at 06:59 AM
---
 
-DROP TABLE IF EXISTS `student_bill`;
-CREATE TABLE IF NOT EXISTS `student_bill` (
-  `std_bill_id` int(10) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `student_bill` (
+  `std_bill_id` int(10) NOT NULL,
   `bill_id` int(10) NOT NULL,
   `student_id` varchar(10) NOT NULL,
   `control_no` int(15) NOT NULL,
   `date_created` date NOT NULL DEFAULT current_timestamp(),
   `date_paid` date NOT NULL DEFAULT '2000-12-02',
   `amount` int(20) NOT NULL,
-  `status` varchar(20) NOT NULL DEFAULT 'pending',
-  PRIMARY KEY (`std_bill_id`),
-  KEY `bill_id` (`bill_id`),
-  KEY `student_id` (`student_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4;
+  `status` varchar(20) NOT NULL DEFAULT 'pending'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- RELATIONSHIPS FOR TABLE `student_bill`:
---   `bill_id`
---       `bill` -> `bill_id`
---   `student_id`
---       `student` -> `student_id`
---
-
---
--- Truncate table before insert `student_bill`
---
-
-TRUNCATE TABLE `student_bill`;
 --
 -- Dumping data for table `student_bill`
 --
@@ -813,8 +546,7 @@ INSERT INTO `student_bill` (`std_bill_id`, `bill_id`, `student_id`, `control_no`
 -- Stand-in structure for view `student_bill_view`
 -- (See below for the actual view)
 --
-DROP VIEW IF EXISTS `student_bill_view`;
-CREATE TABLE IF NOT EXISTS `student_bill_view` (
+CREATE TABLE `student_bill_view` (
 `f_name` varchar(20)
 ,`l_name` varchar(20)
 ,`email` varchar(30)
@@ -831,34 +563,14 @@ CREATE TABLE IF NOT EXISTS `student_bill_view` (
 --
 -- Table structure for table `student_document`
 --
--- Creation: Apr 23, 2021 at 10:02 PM
--- Last update: Jun 02, 2021 at 07:06 AM
---
 
-DROP TABLE IF EXISTS `student_document`;
-CREATE TABLE IF NOT EXISTS `student_document` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `student_document` (
+  `id` int(10) NOT NULL,
   `student_id` varchar(10) NOT NULL,
   `document_type_id` int(11) NOT NULL,
-  `file` varchar(50) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `document_type_id` (`document_type_id`),
-  KEY `student_id` (`student_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4;
+  `file` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- RELATIONSHIPS FOR TABLE `student_document`:
---   `document_type_id`
---       `document_type` -> `document_type_id`
---   `student_id`
---       `student` -> `student_id`
---
-
---
--- Truncate table before insert `student_document`
---
-
-TRUNCATE TABLE `student_document`;
 --
 -- Dumping data for table `student_document`
 --
@@ -888,34 +600,18 @@ INSERT INTO `student_document` (`id`, `student_id`, `document_type_id`, `file`) 
 --
 -- Table structure for table `student_insurance`
 --
--- Creation: May 31, 2021 at 01:15 PM
---
 
-DROP TABLE IF EXISTS `student_insurance`;
-CREATE TABLE IF NOT EXISTS `student_insurance` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `student_insurance` (
+  `id` int(10) NOT NULL,
   `student_id` varchar(10) NOT NULL,
   `company` varchar(20) NOT NULL,
   `date_created` date NOT NULL,
   `period` int(20) NOT NULL,
   `package` varchar(30) NOT NULL,
   `status` varchar(10) NOT NULL DEFAULT 'active',
-  `other_details` text NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `student_id` (`student_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+  `other_details` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- RELATIONSHIPS FOR TABLE `student_insurance`:
---   `student_id`
---       `student` -> `student_id`
---
-
---
--- Truncate table before insert `student_insurance`
---
-
-TRUNCATE TABLE `student_insurance`;
 --
 -- Dumping data for table `student_insurance`
 --
@@ -929,30 +625,14 @@ INSERT INTO `student_insurance` (`id`, `student_id`, `company`, `date_created`, 
 --
 -- Table structure for table `student_profile`
 --
--- Creation: Apr 23, 2021 at 10:03 PM
---
 
-DROP TABLE IF EXISTS `student_profile`;
-CREATE TABLE IF NOT EXISTS `student_profile` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `student_profile` (
+  `id` int(10) NOT NULL,
   `student_id` varchar(10) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `picture` blob NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `student_id` (`student_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4;
+  `picture` blob NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- RELATIONSHIPS FOR TABLE `student_profile`:
---   `student_id`
---       `student` -> `student_id`
---
-
---
--- Truncate table before insert `student_profile`
---
-
-TRUNCATE TABLE `student_profile`;
 --
 -- Dumping data for table `student_profile`
 --
@@ -971,33 +651,17 @@ INSERT INTO `student_profile` (`id`, `student_id`, `email`, `picture`) VALUES
 --
 -- Table structure for table `student_service`
 --
--- Creation: Apr 23, 2021 at 10:03 PM
---
 
-DROP TABLE IF EXISTS `student_service`;
-CREATE TABLE IF NOT EXISTS `student_service` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `student_service` (
+  `id` int(10) NOT NULL,
   `student_id` varchar(10) NOT NULL,
   `phone` varchar(15) NOT NULL,
   `email` varchar(50) NOT NULL,
   `department` varchar(30) NOT NULL,
   `location` varchar(30) NOT NULL,
-  `description` text NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `student_id` (`student_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+  `description` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- RELATIONSHIPS FOR TABLE `student_service`:
---   `student_id`
---       `student` -> `student_id`
---
-
---
--- Truncate table before insert `student_service`
---
-
-TRUNCATE TABLE `student_service`;
 --
 -- Dumping data for table `student_service`
 --
@@ -1014,8 +678,7 @@ INSERT INTO `student_service` (`id`, `student_id`, `phone`, `email`, `department
 -- Stand-in structure for view `unallocated_hostels`
 -- (See below for the actual view)
 --
-DROP VIEW IF EXISTS `unallocated_hostels`;
-CREATE TABLE IF NOT EXISTS `unallocated_hostels` (
+CREATE TABLE `unallocated_hostels` (
 `room_name` varchar(6)
 ,`hostel_name` varchar(20)
 );
@@ -1026,8 +689,7 @@ CREATE TABLE IF NOT EXISTS `unallocated_hostels` (
 -- Stand-in structure for view `unsubmitted_docs_view`
 -- (See below for the actual view)
 --
-DROP VIEW IF EXISTS `unsubmitted_docs_view`;
-CREATE TABLE IF NOT EXISTS `unsubmitted_docs_view` (
+CREATE TABLE `unsubmitted_docs_view` (
 `student_id` varchar(10)
 ,`document_type_id` int(11)
 ,`document_type` varchar(40)
@@ -1039,8 +701,7 @@ CREATE TABLE IF NOT EXISTS `unsubmitted_docs_view` (
 -- Stand-in structure for view `uploaded_docs`
 -- (See below for the actual view)
 --
-DROP VIEW IF EXISTS `uploaded_docs`;
-CREATE TABLE IF NOT EXISTS `uploaded_docs` (
+CREATE TABLE `uploaded_docs` (
 `email` varchar(30)
 ,`student_id` varchar(10)
 ,`document_type` varchar(40)
@@ -1054,8 +715,7 @@ CREATE TABLE IF NOT EXISTS `uploaded_docs` (
 --
 DROP TABLE IF EXISTS `authentication_view`;
 
-DROP VIEW IF EXISTS `authentication_view`;
-CREATE OR REPLACE VIEW `authentication_view`  AS SELECT `student`.`f_name` AS `f_name`, `student`.`m_name` AS `m_name`, `student`.`l_name` AS `l_name`, `student`.`email` AS `email`, `student`.`system_level` AS `system_level`, `student`.`password` AS `password` FROM `student` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `authentication_view`  AS SELECT `student`.`f_name` AS `f_name`, `student`.`m_name` AS `m_name`, `student`.`l_name` AS `l_name`, `student`.`email` AS `email`, `student`.`system_level` AS `system_level`, `student`.`password` AS `password` FROM `student` ;
 
 -- --------------------------------------------------------
 
@@ -1064,8 +724,7 @@ CREATE OR REPLACE VIEW `authentication_view`  AS SELECT `student`.`f_name` AS `f
 --
 DROP TABLE IF EXISTS `student_bill_view`;
 
-DROP VIEW IF EXISTS `student_bill_view`;
-CREATE OR REPLACE VIEW `student_bill_view`  AS SELECT `student`.`f_name` AS `f_name`, `student`.`l_name` AS `l_name`, `student`.`email` AS `email`, `bill`.`bill_name` AS `bill_name`, `student_bill`.`control_no` AS `control_no`, `student_bill`.`date_created` AS `date_created`, `student_bill`.`date_paid` AS `date_paid`, `student_bill`.`amount` AS `amount`, `student_bill`.`status` AS `status` FROM ((`student` join `bill`) join `student_bill`) WHERE `student`.`student_id` = `student_bill`.`student_id` AND `bill`.`bill_id` = `student_bill`.`bill_id` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `student_bill_view`  AS SELECT `student`.`f_name` AS `f_name`, `student`.`l_name` AS `l_name`, `student`.`email` AS `email`, `bill`.`bill_name` AS `bill_name`, `student_bill`.`control_no` AS `control_no`, `student_bill`.`date_created` AS `date_created`, `student_bill`.`date_paid` AS `date_paid`, `student_bill`.`amount` AS `amount`, `student_bill`.`status` AS `status` FROM ((`student` join `bill`) join `student_bill`) WHERE `student`.`student_id` = `student_bill`.`student_id` AND `bill`.`bill_id` = `student_bill`.`bill_id` ;
 
 -- --------------------------------------------------------
 
@@ -1074,8 +733,7 @@ CREATE OR REPLACE VIEW `student_bill_view`  AS SELECT `student`.`f_name` AS `f_n
 --
 DROP TABLE IF EXISTS `unallocated_hostels`;
 
-DROP VIEW IF EXISTS `unallocated_hostels`;
-CREATE OR REPLACE VIEW `unallocated_hostels`  AS SELECT `room`.`room_name` AS `room_name`, `hostel`.`hostel_name` AS `hostel_name` FROM (`hostel` join `room` on(`room`.`hostel_id` = `hostel`.`hostel_id`)) WHERE !exists(select `room`.`room_name`,`hostel`.`hostel_name` from ((`room` join `hostel`) join `room_allocation`) where `room`.`room_id` = `room_allocation`.`room_id` AND `room`.`hostel_id` = `hostel`.`hostel_id` limit 1) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `unallocated_hostels`  AS SELECT `room`.`room_name` AS `room_name`, `hostel`.`hostel_name` AS `hostel_name` FROM (`hostel` join `room` on(`room`.`hostel_id` = `hostel`.`hostel_id`)) WHERE !exists(select `room`.`room_name`,`hostel`.`hostel_name` from ((`room` join `hostel`) join `room_allocation`) where `room`.`room_id` = `room_allocation`.`room_id` AND `room`.`hostel_id` = `hostel`.`hostel_id` limit 1) ;
 
 -- --------------------------------------------------------
 
@@ -1084,8 +742,7 @@ CREATE OR REPLACE VIEW `unallocated_hostels`  AS SELECT `room`.`room_name` AS `r
 --
 DROP TABLE IF EXISTS `unsubmitted_docs_view`;
 
-DROP VIEW IF EXISTS `unsubmitted_docs_view`;
-CREATE OR REPLACE VIEW `unsubmitted_docs_view`  AS SELECT `sp`.`student_id` AS `student_id`, `da`.`document_type_id` AS `document_type_id`, `da`.`document_type` AS `document_type` FROM (`student_profile` `sp` join `document_type` `da`) WHERE !exists(select `sd`.`student_id`,`sd`.`document_type_id`,`d`.`document_type` from (`student_document` `sd` join `document_type` `d` on(`sd`.`document_type_id` = `d`.`document_type_id`)) where `da`.`document_type_id` = `sd`.`document_type_id` AND `sp`.`student_id` = `sd`.`student_id` limit 1) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `unsubmitted_docs_view`  AS SELECT `sp`.`student_id` AS `student_id`, `da`.`document_type_id` AS `document_type_id`, `da`.`document_type` AS `document_type` FROM (`student_profile` `sp` join `document_type` `da`) WHERE !exists(select `sd`.`student_id`,`sd`.`document_type_id`,`d`.`document_type` from (`student_document` `sd` join `document_type` `d` on(`sd`.`document_type_id` = `d`.`document_type_id`)) where `da`.`document_type_id` = `sd`.`document_type_id` AND `sp`.`student_id` = `sd`.`student_id` limit 1) ;
 
 -- --------------------------------------------------------
 
@@ -1094,8 +751,280 @@ CREATE OR REPLACE VIEW `unsubmitted_docs_view`  AS SELECT `sp`.`student_id` AS `
 --
 DROP TABLE IF EXISTS `uploaded_docs`;
 
-DROP VIEW IF EXISTS `uploaded_docs`;
-CREATE OR REPLACE VIEW `uploaded_docs`  AS SELECT `student`.`email` AS `email`, `student_document`.`student_id` AS `student_id`, `document_type`.`document_type` AS `document_type`, `student_document`.`file` AS `file` FROM ((`student` join `student_document`) join `document_type`) WHERE `student`.`student_id` = `student_document`.`student_id` AND `document_type`.`document_type_id` = `student_document`.`document_type_id` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `uploaded_docs`  AS SELECT `student`.`email` AS `email`, `student_document`.`student_id` AS `student_id`, `document_type`.`document_type` AS `document_type`, `student_document`.`file` AS `file` FROM ((`student` join `student_document`) join `document_type`) WHERE `student`.`student_id` = `student_document`.`student_id` AND `document_type`.`document_type_id` = `student_document`.`document_type_id` ;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `academic_year`
+--
+ALTER TABLE `academic_year`
+  ADD PRIMARY KEY (`academic_id`);
+
+--
+-- Indexes for table `bill`
+--
+ALTER TABLE `bill`
+  ADD PRIMARY KEY (`bill_id`);
+
+--
+-- Indexes for table `course`
+--
+ALTER TABLE `course`
+  ADD PRIMARY KEY (`course_id`),
+  ADD KEY `school_id` (`school_id`);
+
+--
+-- Indexes for table `dean_appointment`
+--
+ALTER TABLE `dean_appointment`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `student_id` (`student_id`);
+
+--
+-- Indexes for table `document_category`
+--
+ALTER TABLE `document_category`
+  ADD PRIMARY KEY (`document_category_id`);
+
+--
+-- Indexes for table `document_type`
+--
+ALTER TABLE `document_type`
+  ADD PRIMARY KEY (`document_type_id`),
+  ADD KEY `document_category_id` (`document_category_id`);
+
+--
+-- Indexes for table `hostel`
+--
+ALTER TABLE `hostel`
+  ADD PRIMARY KEY (`hostel_id`);
+
+--
+-- Indexes for table `registration_session`
+--
+ALTER TABLE `registration_session`
+  ADD PRIMARY KEY (`reg_session_id`),
+  ADD KEY `academic_id` (`academic_id`),
+  ADD KEY `semester_id` (`semester_id`);
+
+--
+-- Indexes for table `room`
+--
+ALTER TABLE `room`
+  ADD PRIMARY KEY (`room_id`),
+  ADD KEY `hostel_id` (`hostel_id`);
+
+--
+-- Indexes for table `room_allocation`
+--
+ALTER TABLE `room_allocation`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `reg_session_id` (`reg_session_id`),
+  ADD KEY `room_id` (`room_id`),
+  ADD KEY `request_id` (`request_id`);
+
+--
+-- Indexes for table `room_requests`
+--
+ALTER TABLE `room_requests`
+  ADD PRIMARY KEY (`request_id`),
+  ADD KEY `student_id` (`student_id`);
+
+--
+-- Indexes for table `school`
+--
+ALTER TABLE `school`
+  ADD PRIMARY KEY (`school_id`);
+
+--
+-- Indexes for table `semester`
+--
+ALTER TABLE `semester`
+  ADD PRIMARY KEY (`semester_id`);
+
+--
+-- Indexes for table `sponsor`
+--
+ALTER TABLE `sponsor`
+  ADD PRIMARY KEY (`sponsor_id`);
+
+--
+-- Indexes for table `staff`
+--
+ALTER TABLE `staff`
+  ADD PRIMARY KEY (`staff_id`);
+
+--
+-- Indexes for table `student`
+--
+ALTER TABLE `student`
+  ADD PRIMARY KEY (`student_id`),
+  ADD KEY `course_id` (`course_id`),
+  ADD KEY `sponsor_id` (`sponsor_id`);
+
+--
+-- Indexes for table `student_bill`
+--
+ALTER TABLE `student_bill`
+  ADD PRIMARY KEY (`std_bill_id`),
+  ADD KEY `bill_id` (`bill_id`),
+  ADD KEY `student_id` (`student_id`);
+
+--
+-- Indexes for table `student_document`
+--
+ALTER TABLE `student_document`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `document_type_id` (`document_type_id`),
+  ADD KEY `student_id` (`student_id`);
+
+--
+-- Indexes for table `student_insurance`
+--
+ALTER TABLE `student_insurance`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `student_id` (`student_id`);
+
+--
+-- Indexes for table `student_profile`
+--
+ALTER TABLE `student_profile`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `student_id` (`student_id`);
+
+--
+-- Indexes for table `student_service`
+--
+ALTER TABLE `student_service`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `student_id` (`student_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `academic_year`
+--
+ALTER TABLE `academic_year`
+  MODIFY `academic_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT for table `bill`
+--
+ALTER TABLE `bill`
+  MODIFY `bill_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+
+--
+-- AUTO_INCREMENT for table `course`
+--
+ALTER TABLE `course`
+  MODIFY `course_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+
+--
+-- AUTO_INCREMENT for table `dean_appointment`
+--
+ALTER TABLE `dean_appointment`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `document_category`
+--
+ALTER TABLE `document_category`
+  MODIFY `document_category_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `document_type`
+--
+ALTER TABLE `document_type`
+  MODIFY `document_type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+
+--
+-- AUTO_INCREMENT for table `hostel`
+--
+ALTER TABLE `hostel`
+  MODIFY `hostel_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `registration_session`
+--
+ALTER TABLE `registration_session`
+  MODIFY `reg_session_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `room`
+--
+ALTER TABLE `room`
+  MODIFY `room_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
+-- AUTO_INCREMENT for table `room_allocation`
+--
+ALTER TABLE `room_allocation`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `room_requests`
+--
+ALTER TABLE `room_requests`
+  MODIFY `request_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `school`
+--
+ALTER TABLE `school`
+  MODIFY `school_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `semester`
+--
+ALTER TABLE `semester`
+  MODIFY `semester_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `sponsor`
+--
+ALTER TABLE `sponsor`
+  MODIFY `sponsor_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `staff`
+--
+ALTER TABLE `staff`
+  MODIFY `staff_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `student_bill`
+--
+ALTER TABLE `student_bill`
+  MODIFY `std_bill_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+
+--
+-- AUTO_INCREMENT for table `student_document`
+--
+ALTER TABLE `student_document`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+
+--
+-- AUTO_INCREMENT for table `student_insurance`
+--
+ALTER TABLE `student_insurance`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `student_profile`
+--
+ALTER TABLE `student_profile`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `student_service`
+--
+ALTER TABLE `student_service`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
